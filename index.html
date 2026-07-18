@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dance Annex — The Fixer Report</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --paper:#f4f2ee; --ink:#1a1613; --mute:#726c63; --hair:#e0dcd3; --panel:#faf9f6;
+    --brand:#5b2fd4;
+    --hot:#bb3324;   --hot-soft:#f7e4e0;
+    --act:#a66300;   --act-soft:#f5e8d2;
+    --wait:#4f6079;  --wait-soft:#e7ebf1;
+    --done:#2c7a4e;  --done-soft:#e0eee7;
+    --cond:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --text:Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --paper:#151210; --ink:#ede9e2; --mute:#98918655; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
+    --brand:#a685f0;
+    --hot:#e87b6c;  --hot-soft:#3a1b16;
+    --act:#e0a24f;  --act-soft:#33270f;
+    --wait:#93a7c9; --wait-soft:#1d2431;
+    --done:#6fbd92; --done-soft:#16291f;
+  }}
+  :root[data-theme="light"] {
+    --paper:#f4f2ee; --ink:#1a1613; --mute:#726c63; --hair:#e0dcd3; --panel:#faf9f6;
+    --brand:#5b2fd4; --hot:#bb3324; --hot-soft:#f7e4e0; --act:#a66300; --act-soft:#f5e8d2;
+    --wait:#4f6079; --wait-soft:#e7ebf1; --done:#2c7a4e; --done-soft:#e0eee7;
+  }
+  :root[data-theme="dark"] {
+    --paper:#151210; --ink:#ede9e2; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
+    --brand:#a685f0; --hot:#e87b6c; --hot-soft:#3a1b16; --act:#e0a24f; --act-soft:#33270f;
+    --wait:#93a7c9; --wait-soft:#1d2431; --done:#6fbd92; --done-soft:#16291f;
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--paper); color:var(--ink); font:16px/1.55 var(--text); margin:0; padding:0 clamp(1rem,4vw,2.5rem) 5rem; }
+  .sheet { max-width:920px; margin:0 auto; }
+
+  .mast { padding:3rem 0 0; }
+  .kicker { display:flex; align-items:center; gap:.7rem; }
+  .kicker span { font:600 .72rem/1 var(--sans); letter-spacing:.28em; text-transform:uppercase; color:var(--mute); }
+  .kicker i { flex:1; height:1px; background:var(--hair); }
+  .mast h1 { font:800 clamp(2.8rem,10vw,5.6rem)/.92 var(--cond); text-transform:uppercase; letter-spacing:.01em; margin:.8rem 0 .5rem; text-wrap:balance; }
+  .mast h1 em { font-style:normal; color:var(--hot); }
+  .verdict { font:500 1.05rem/1.5 var(--text); color:var(--ink); max-width:60ch; }
+  .verdict b { color:var(--hot); font-weight:700; }
+
+  .score { display:grid; grid-template-columns:repeat(auto-fit,minmax(0,1fr)); border-top:2px solid var(--ink); border-bottom:1px solid var(--hair); margin:2rem 0 0; }
+  .score div { display:flex; align-items:baseline; gap:.7rem; padding:1.1rem .4rem 1.2rem 1.1rem; border-left:1px solid var(--hair); }
+  .score div:first-child { border-left:0; padding-left:.2rem; }
+  .score .n { font:800 clamp(2.4rem,6.5vw,3.6rem)/1 var(--cond); font-variant-numeric:tabular-nums; }
+  .score .k { font:600 .7rem/1.35 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--mute); max-width:9em; }
+  .hot-n{color:var(--hot);} .act-n{color:var(--act);} .wait-n{color:var(--wait);}
+
+  section { margin-top:3.2rem; }
+  .head { display:flex; align-items:baseline; gap:1rem; margin-bottom:.3rem; }
+  .head .no { font:800 .95rem/1 var(--cond); color:var(--paper); padding:.34rem .58rem .28rem; border-radius:4px; letter-spacing:.04em; white-space:nowrap; }
+  .head h2 { font:800 clamp(1.4rem,4vw,2rem)/1 var(--cond); text-transform:uppercase; letter-spacing:.03em; margin:0; }
+  .head .note { font-size:.83rem; color:var(--mute); margin-left:auto; text-align:right; max-width:22ch; }
+  section.you .no{background:var(--hot);} section.you h2{color:var(--hot);}
+  section.agent .no{background:var(--brand);} section.agent h2{color:var(--brand);}
+  section.ops .no{background:var(--wait);} section.ops h2{color:var(--wait);}
+
+  .fix { display:grid; grid-template-columns:6px 1fr; gap:0 1rem; background:var(--panel); border:1px solid var(--hair); border-radius:8px; margin-top:.9rem; overflow:hidden; }
+  .fix .stripe { background:var(--act); }
+  .fix.sev-hot .stripe{background:var(--hot);} .fix.sev-act .stripe{background:var(--act);} .fix.sev-wait .stripe{background:var(--wait);}
+  .fix .body { padding:1.05rem 1.2rem 1.15rem 0; }
+  .fix .top { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .8rem; }
+  .fix .title { font:700 1.12rem/1.3 var(--sans); letter-spacing:-.01em; }
+  .fix .pill { font:700 .68rem/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; padding:.4rem .6rem; border-radius:999px; white-space:nowrap; }
+  .pill.hot{background:var(--hot);color:var(--paper);} .pill.act{background:var(--act-soft);color:var(--act);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--act) 30%,transparent);} .pill.wait{background:var(--wait-soft);color:var(--wait);}
+  .fix .meta { font:600 .7rem/1.3 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:.35rem 0 0; }
+  .fix .desc { font-size:.92rem; color:var(--mute); margin:.5rem 0 0; max-width:74ch; }
+  .fix .desc b { color:var(--ink); font-weight:650; }
+  .fix .move { display:inline-block; font:600 .72rem/1 var(--sans); color:var(--brand); margin-top:.6rem; letter-spacing:.02em; }
+  a.src { color:inherit; text-decoration:none; border-bottom:1px solid var(--hair); }
+  a.src:hover{ color:var(--brand); border-color:var(--brand); }
+
+  .agent-list { list-style:none; padding:0; margin:.6rem 0 0; display:grid; gap:.55rem; }
+  .agent-list li { display:grid; grid-template-columns:1fr auto; gap:.3rem 1rem; align-items:baseline; padding:.75rem 0; border-top:1px solid var(--hair); }
+  .agent-list li:first-child{border-top:0;}
+  .agent-list .t { font:650 .98rem/1.35 var(--sans); }
+  .agent-list .t small { display:block; font:400 .84rem/1.35 var(--text); color:var(--mute); margin-top:.15rem; max-width:72ch; }
+  .agent-list .surface { font:600 .66rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--mute); white-space:nowrap; padding-top:.15rem; }
+
+  .ops-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:.55rem; margin-top:.7rem; }
+  .ops-grid .cell { background:var(--panel); border:1px solid var(--hair); border-radius:7px; padding:.7rem .85rem; }
+  .ops-grid .cell .c { font:800 1.5rem/1 var(--cond); color:var(--wait); font-variant-numeric:tabular-nums; }
+  .ops-grid .cell .l { font-size:.82rem; color:var(--mute); margin-top:.25rem; }
+  .ops-note { font-size:.85rem; color:var(--mute); margin-top:.8rem; max-width:70ch; }
+
+  footer { margin-top:3.6rem; border-top:2px solid var(--ink); padding-top:1rem; display:flex; flex-wrap:wrap; gap:.5rem 2rem; justify-content:space-between; font-size:.76rem; color:var(--mute); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mast,.score,section,footer { animation:rise .5s cubic-bezier(.2,.7,.2,1) both; }
+    .score{animation-delay:.06s;} section:nth-of-type(1){animation-delay:.12s;} section:nth-of-type(2){animation-delay:.19s;} section:nth-of-type(3){animation-delay:.26s;} footer{animation-delay:.32s;}
+    @keyframes rise { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+  }
+  @media (max-width:560px){ .score div{border-left:0;border-top:1px solid var(--hair);} .score div:first-child{border-top:0;} .agent-list li{grid-template-columns:1fr;} .agent-list .surface{padding-top:0;} }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 18, 2026 · compiled 10:34 PM</span></div>
+    <h1>The Fixer<em> Report</em></h1>
+    <p class="verdict">One thing is <b>urgent</b> — the Concierge runtime stalled last evening and stopped watching live bookings. Three items are yours to fix directly; nine recurring classes are queued for the improvement loop.</p>
+  </header>
+
+  <nav class="score" aria-label="At a glance">
+    <div><span class="n hot-n">3</span><span class="k">Fix these — you</span></div>
+    <div><span class="n act-n">1</span><span class="k">of them urgent</span></div>
+    <div><span class="n">9</span><span class="k">Fix the agent (loop)</span></div>
+    <div><span class="n wait-n">12</span><span class="k">Ops-lead gates</span></div>
+  </nav>
+
+  <!-- FIX THESE — YOU: agent mistakes / live wrong states only Junyan can correct -->
+  <section class="you">
+    <div class="head"><span class="no">YOU</span><h2>Fix these — you</h2><span class="note">agent mistakes &amp; live wrong states only you can correct</span></div>
+
+    <div class="fix sev-hot">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">Concierge runtime stalled after 16:44 EDT — live bookings went unwatched</span><span class="pill hot">Kick the runtime</span></div>
+        <p class="meta">Runtime · flagged by the Custodian · Jul 18 00:44</p>
+        <p class="desc">The Concierge's last pass was <b>16:44 EDT (Pass 10)</b> — no 17:00 / 18:00 / 19:00 hourly passes and the ~20:00 heavy pass never ran. First-timer FBS arrivals last evening had <b>no desk monitoring</b> behind them. Same scheduler-skip class the runtime banners warn about; the Receptionist stayed alive. <b>Restore / kick the Concierge</b> and confirm it's passing again. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a17503281c48171b050c375b63b8682">open the row ↗</a></p>
+        <span class="move">→ filed For = Ops Lead; it's a runtime fault, so it should move to For = Junyan</span>
+      </div>
+    </div>
+
+    <div class="fix sev-act">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">Receptionist report keeps forking a duplicate, stuck In-Progress</span><span class="pill act">Fold the duplicate</span></div>
+        <p class="meta">Report hygiene · Custodian JOB 9 · recurred Jul 12 + 13</p>
+        <p class="desc">The ~09:45 pass's report-exists guard forks a <b>second</b> "The Receptionist — &lt;date&gt;" report instead of appending, leaving a lingering <b>In-Progress</b> row that can trip the Run Monitor staleness flag. Same failure two days running — the ~09:45 dedup guard is the repeat offender. Fold/cancel the duplicate into the primary. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39c7503281c481d3b438d385cc1ec1e2">open the row ↗</a></p>
+        <span class="move">→ the recurring class is queued below (blank-guard family)</span>
+      </div>
+    </div>
+
+    <div class="fix sev-act">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">509 thermostat alert auto-closes daily with no durable fix</span><span class="pill act">Decide: fault or artifact</span></div>
+        <p class="meta">Facilities · QA row open since Jul 13</p>
+        <p class="desc">The Weatherman's "509 malfunction suspected" alert has fired on <b>7 hot days</b> (7/9→7/17) and each day's row is auto-Processed within hours with no diagnosis. Likely a threshold artifact — the cool setpoint baseline (26°C) sits above the ▼24°C crossing rung, so a healthy AC never produces a "falls-below" crossing. Needs a one-time call: <b>lower the setpoint below the rung, add a lower rung, or confirm-benign-and-suppress</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39c7503281c4815b9496fad57c105501">open the row ↗</a></p>
+        <span class="move">→ paired design brief queued below</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIX THE AGENT: open Sweep Feedback (recurring classes / design sessions) -->
+  <section class="agent">
+    <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">recurring classes — the improvement backlog, not today's to-do</span></div>
+    <ul class="agent-list">
+      <li><span class="t">Held drafts ship with a blank Drafted&nbsp;Body<small>The edit-detection provenance is lost on those rows, so human wording edits generate no HTR suggestion — a silent gap in the wording loop. Make the draft step always copy Message Body → Drafted Body.</small></span><span class="surface">Reply-drafting SOP</span></li>
+      <li><span class="t">509 thermostat: re-fit the crossing ladder vs setpoint<small>The design half of the urgent facilities item above — durably decide telemetry artifact vs real HVAC fault and stop auto-Processing the daily alert.</small></span><span class="surface">Weatherman v2</span></li>
+      <li><span class="t">Harden off-queue #desk-drops capture<small>Morning drops missed capture two days running — a window-boundary skip (an emergency "693 not working" drop) and a Slack connector-transport failure. Add a safety overlap behind last_sweep + escalate read failures.</small></span><span class="surface">JOB 4 drop scan</span></li>
+      <li><span class="t">JOB 1 blind spot: continuity completions with no disarm<small>A booking held by continuous occupancy never disarms, so it never appears in the 🧹 Reconcile view (Caryl C. 693, caught only on Junyan's flag). Add a Step 4.5 sub-check for yesterday's still-Upcoming rows.</small></span><span class="surface">JOB 1 reconcile</span></li>
+      <li><span class="t">Never assert "no Artist DB record" without searching first<small>A false blank-Artist relation defeats per-artist dedup and spawned duplicate tickets (Shamir P.). Force a positive Artist search before asserting "none"; harden dedup against blank-Artist rows.</small></span><span class="surface">Ticket build / JOB 2</span></li>
+      <li><span class="t">Alarm Trigger SOP: don't fire "renter on site" when armed away<small>A 527 alarm queued a held check-in to a renter who wasn't confirmed present (pulled on Junyan's flag). Gate the check-in on confirmed presence; personalize when identity is known.</small></span><span class="surface">Alarm trigger SOP</span></li>
+      <li><span class="t">Dropbox Sign completions bypass the inbox scan<small>Signed rental agreements can sit unnoticed for days — the completion sender has no Triage Label Mapping row. Add the mapping + a routing rule that clears the "awaiting signature" block.</small></span><span class="surface">JOB 2 inbox scan</span></li>
+      <li><span class="t">New HTR card: plan / membership cancellation reply<small>No How-to-Respond row covers an inbound request to cancel or pause a recurring plan. Proposed acknowledge-and-route wording is drafted, awaiting your accept (never robot-applied — it's a billing action).</small></span><span class="surface">HTR proposal</span></li>
+      <li><span class="t">HTR tweak: amenity-quantity answer → add event-fit follow-up<small>A template-level human edit was detected on a sent reply; filed for your review, no wording changed.</small></span><span class="surface">HTR suggestion</span></li>
+    </ul>
+  </section>
+
+  <!-- OPS-LEAD GATES: context only — staff gates, not Junyan's to fix -->
+  <section class="ops">
+    <div class="head"><span class="no">OPS</span><h2>Waiting on the Ops lead</h2><span class="note">staff gates — context, not your fix list</span></div>
+    <div class="ops-grid">
+      <div class="cell"><div class="c">8</div><div class="l">Coverage-gap shifts to claim (Jul 18–19 · FBS &amp; Monitor)</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Ester V. — Jul 18 693 FBS needs an alarm code before arrival</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">509 cooling setpoint — today's staff checklist</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Amy B. — correct FBS board over-tier (repeat renter, not FBS)</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Panel "Credentials In Conflict" ×4 — clear duplicate user codes</div></div>
+      <div class="cell"><div class="c">8</div><div class="l">HTR suggestions pending review (oldest ~7 days)</div></div>
+    </div>
+    <p class="ops-note">These sit on the Ops-lead brief (<b>For = Ops Lead</b>) and on the Night Watch "Waiting on you". Listed here only so nothing hides — they're staff gates, not agent mistakes. One item (a Studio 901 tour for Sangah L.) is routed <b>For = Owner</b> and you're already handling it live.</p>
+  </section>
+
+  <footer>
+    <span>Point-in-time Fixer Report, compiled manually ahead of the automated 02:35 pass. Sources: ✅ Actions to Perform · 🔧 Sweep Feedback · overnight run reports.</span>
+    <span>Rows open in Notion ↗ · codes &amp; contact detail live only in Notion.</span>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){ a.target="_blank"; a.rel="noopener"; });
+</script>
+
+</body>
+</html>

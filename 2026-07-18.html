@@ -107,64 +107,49 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · compiled 8:45 AM</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 18, 2026 · compiled 10:34 PM</span></div>
     <h1>The Fixer<em> Report</em></h1>
-    <p class="verdict">The urgent item is <b>cleared</b> — Anthropic API credits were reloaded this morning, so the Claude-step Zaps (including the Emergency Call Line) should recover; verify on the next run. Five items are yours; seven recurring classes are queued for the loop. This morning's HTR review queue was cleared to zero.</p>
+    <p class="verdict">One thing is <b>urgent</b> — the Concierge runtime stalled last evening and stopped watching live bookings. Three items are yours to fix directly; nine recurring classes are queued for the improvement loop.</p>
   </header>
 
   <nav class="score" aria-label="At a glance">
-    <div><span class="n hot-n">5</span><span class="k">Fix these — you</span></div>
-    <div><span class="n act-n">0</span><span class="k">of them urgent</span></div>
-    <div><span class="n">7</span><span class="k">Fix the agent (loop)</span></div>
-    <div><span class="n wait-n">3</span><span class="k">Ops-lead gates</span></div>
+    <div><span class="n hot-n">3</span><span class="k">Fix these — you</span></div>
+    <div><span class="n act-n">1</span><span class="k">of them urgent</span></div>
+    <div><span class="n">9</span><span class="k">Fix the agent (loop)</span></div>
+    <div><span class="n wait-n">12</span><span class="k">Ops-lead gates</span></div>
   </nav>
 
   <!-- FIX THESE — YOU: agent mistakes / live wrong states only Junyan can correct -->
   <section class="you">
     <div class="head"><span class="no">YOU</span><h2>Fix these — you</h2><span class="note">agent mistakes &amp; live wrong states only you can correct</span></div>
 
-    <div class="fix sev-wait">
+    <div class="fix sev-hot">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Anthropic API credits reloaded — verify the Claude-step Zaps recover</span><span class="pill wait">Verify next run</span></div>
-        <p class="meta">Billing · reloaded Jul 21 AM (was failing since Jul 19 21:01)</p>
-        <p class="desc">The Emergency Call Line Zap (and likely <b>all Claude-step Zaps</b>) failed with 400 invalid_request_error while the balance was empty. Credits are back — <b>confirm the next Zap runs clean</b>, then close the feedback row. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a37503281c481e78c13ce6fb5381122">open the row ↗</a></p>
+        <div class="top"><span class="title">Concierge runtime stalled after 16:44 EDT — live bookings went unwatched</span><span class="pill hot">Kick the runtime</span></div>
+        <p class="meta">Runtime · flagged by the Custodian · Jul 18 00:44</p>
+        <p class="desc">The Concierge's last pass was <b>16:44 EDT (Pass 10)</b> — no 17:00 / 18:00 / 19:00 hourly passes and the ~20:00 heavy pass never ran. First-timer FBS arrivals last evening had <b>no desk monitoring</b> behind them. Same scheduler-skip class the runtime banners warn about; the Receptionist stayed alive. <b>Restore / kick the Concierge</b> and confirm it's passing again. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a17503281c48171b050c375b63b8682">open the row ↗</a></p>
+        <span class="move">→ filed For = Ops Lead; it's a runtime fault, so it should move to For = Junyan</span>
       </div>
     </div>
 
     <div class="fix sev-act">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Retired “The Closer” still runs nightly (~21:34 EDT)</span><span class="pill act">Disable the trigger</span></div>
-        <p class="meta">Runtime · Custodian night pass · Jul 19</p>
-        <p class="desc">Ticket 027 folded end-of-day into the Custodian, but the Closer's cloud trigger was never disabled. It has <b>filed reports and done production work two consecutive evenings</b>. One-time fix tracked <b>For = Junyan</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a17503281c4813789e8e7d5bcd3d31e">open the row ↗</a></p>
+        <div class="top"><span class="title">Receptionist report keeps forking a duplicate, stuck In-Progress</span><span class="pill act">Fold the duplicate</span></div>
+        <p class="meta">Report hygiene · Custodian JOB 9 · recurred Jul 12 + 13</p>
+        <p class="desc">The ~09:45 pass's report-exists guard forks a <b>second</b> "The Receptionist — &lt;date&gt;" report instead of appending, leaving a lingering <b>In-Progress</b> row that can trip the Run Monitor staleness flag. Same failure two days running — the ~09:45 dedup guard is the repeat offender. Fold/cancel the duplicate into the primary. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39c7503281c481d3b438d385cc1ec1e2">open the row ↗</a></p>
+        <span class="move">→ the recurring class is queued below (blank-guard family)</span>
       </div>
     </div>
 
     <div class="fix sev-act">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">509 thermostat — wire a real inside-temp read</span><span class="pill act">Set up SDM</span></div>
-        <p class="meta">Facilities · design row Applied-in-part · Jul 21</p>
-        <p class="desc">The <b>▼26 telemetry rung is live</b> (applet FZit26mP). Remaining: decide the Google SDM Device Access setup and capture one hot-day live reading. Verification: the next <b>≥28°C day</b> should emit ▼26 crossings and <b>no malfunction alert</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39f7503281c4815aae79e6830e016721">open the row ↗</a></p>
-      </div>
-    </div>
-
-    <div class="fix sev-act">
-      <div class="stripe"></div>
-      <div class="body">
-        <div class="top"><span class="title">Notion UI: filter a “Reconcile 2” FBS-board view</span><span class="pill act">Add the filter</span></div>
-        <p class="meta">Notion UI · from Jul 21 punch list</p>
-        <p class="desc">Add <b>Status ∈ {Upcoming, In Studio}</b> to a “Reconcile 2” view on the FBS board. The API can't set status filters, so this is a <b>1-minute manual view edit</b>.</p>
-      </div>
-    </div>
-
-    <div class="fix sev-wait">
-      <div class="stripe"></div>
-      <div class="body">
-        <div class="top"><span class="title">Gmail: verify the production Dropbox Sign label</span><span class="pill wait">Confirm the label</span></div>
-        <p class="meta">Gmail · JOB 2 mapping · Jul 21</p>
-        <p class="desc">Confirm the exact Dropbox Sign label name on the production inbox (<b>info@</b>). The two new Triage Label Mapping rows are live; they need the <b>real label string</b> verified.</p>
+        <div class="top"><span class="title">509 thermostat alert auto-closes daily with no durable fix</span><span class="pill act">Decide: fault or artifact</span></div>
+        <p class="meta">Facilities · QA row open since Jul 13</p>
+        <p class="desc">The Weatherman's "509 malfunction suspected" alert has fired on <b>7 hot days</b> (7/9→7/17) and each day's row is auto-Processed within hours with no diagnosis. Likely a threshold artifact — the cool setpoint baseline (26°C) sits above the ▼24°C crossing rung, so a healthy AC never produces a "falls-below" crossing. Needs a one-time call: <b>lower the setpoint below the rung, add a lower rung, or confirm-benign-and-suppress</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39c7503281c4815b9496fad57c105501">open the row ↗</a></p>
+        <span class="move">→ paired design brief queued below</span>
       </div>
     </div>
   </section>
@@ -173,13 +158,15 @@
   <section class="agent">
     <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">recurring classes — the improvement backlog, not today's to-do</span></div>
     <ul class="agent-list">
-      <li><span class="t">Run Monitor cried “agent missing” ~10 times over Jul 19–21<small>Timekeeper ×3, Concierge ×3, Doorman, Receptionist ×2, Custodian, Watchman and Closer were flagged. Triage real stalls vs monitor noise, then re-fit expected-cadence windows — the check-in/staleness model over-fires against actual schedules.</small></span><span class="surface">J24 Run monitoring</span></li>
-      <li><span class="t">Send Engine silently dropped a released Email reply<small>“Gmail thread not found” hit the David Diep/Tess English T11 summary; Junyan recovered manually. Two transient Google errors landed the same night. Add dispatch verification + failure escalation so rows cannot look handled while claimed-but-not-dispatched.</small></span><span class="surface">Send Engine (Apps Script)</span></li>
-      <li><span class="t">SMS Message Sender dispatched an Email row with an empty recipient<small>Two Gmail bounces landed Jul 20 at 16:28 and 16:36. Add a recipient-present guard before dispatch.</small></span><span class="surface">Notion SMS Sender Zap</span></li>
-      <li><span class="t">Backfill Drafted Body at queue creation<small>If Drafted Body is empty, copy Message Body → Drafted Body so wording edits keep provenance. Punch-list carryover from Jul 18 LOOP #1.</small></span><span class="surface">Message Queue Zap</span></li>
-      <li><span class="t">Sales tickets are born with blank Position + the wrong SOP<small>JAICYEA SMITH's community-rate request got the Platform-Event template, and a duplicate never consolidated. Set a real Position at birth and route the SOP by lead type.</small></span><span class="surface">Intake / Zapier auto-create</span></li>
-      <li><span class="t">Dedup FBS-monitor rows by booking id upstream<small>Booking 901 (QTrang Tran) appeared twice and disagreed: EVENT FBS “PARTIAL · 165M GAP” vs “Booking, QTrang T.” with no arrival.</small></span><span class="surface">FBS monitor</span></li>
-      <li><span class="t">Codex Concierge Slack connector keeps failing drop-scan duty<small>Decide: fix connector reliability or drop the duty from Codex.</small></span><span class="surface">JOB 4 drop scan</span></li>
+      <li><span class="t">Held drafts ship with a blank Drafted&nbsp;Body<small>The edit-detection provenance is lost on those rows, so human wording edits generate no HTR suggestion — a silent gap in the wording loop. Make the draft step always copy Message Body → Drafted Body.</small></span><span class="surface">Reply-drafting SOP</span></li>
+      <li><span class="t">509 thermostat: re-fit the crossing ladder vs setpoint<small>The design half of the urgent facilities item above — durably decide telemetry artifact vs real HVAC fault and stop auto-Processing the daily alert.</small></span><span class="surface">Weatherman v2</span></li>
+      <li><span class="t">Harden off-queue #desk-drops capture<small>Morning drops missed capture two days running — a window-boundary skip (an emergency "693 not working" drop) and a Slack connector-transport failure. Add a safety overlap behind last_sweep + escalate read failures.</small></span><span class="surface">JOB 4 drop scan</span></li>
+      <li><span class="t">JOB 1 blind spot: continuity completions with no disarm<small>A booking held by continuous occupancy never disarms, so it never appears in the 🧹 Reconcile view (Caryl C. 693, caught only on Junyan's flag). Add a Step 4.5 sub-check for yesterday's still-Upcoming rows.</small></span><span class="surface">JOB 1 reconcile</span></li>
+      <li><span class="t">Never assert "no Artist DB record" without searching first<small>A false blank-Artist relation defeats per-artist dedup and spawned duplicate tickets (Shamir P.). Force a positive Artist search before asserting "none"; harden dedup against blank-Artist rows.</small></span><span class="surface">Ticket build / JOB 2</span></li>
+      <li><span class="t">Alarm Trigger SOP: don't fire "renter on site" when armed away<small>A 527 alarm queued a held check-in to a renter who wasn't confirmed present (pulled on Junyan's flag). Gate the check-in on confirmed presence; personalize when identity is known.</small></span><span class="surface">Alarm trigger SOP</span></li>
+      <li><span class="t">Dropbox Sign completions bypass the inbox scan<small>Signed rental agreements can sit unnoticed for days — the completion sender has no Triage Label Mapping row. Add the mapping + a routing rule that clears the "awaiting signature" block.</small></span><span class="surface">JOB 2 inbox scan</span></li>
+      <li><span class="t">New HTR card: plan / membership cancellation reply<small>No How-to-Respond row covers an inbound request to cancel or pause a recurring plan. Proposed acknowledge-and-route wording is drafted, awaiting your accept (never robot-applied — it's a billing action).</small></span><span class="surface">HTR proposal</span></li>
+      <li><span class="t">HTR tweak: amenity-quantity answer → add event-fit follow-up<small>A template-level human edit was detected on a sent reply; filed for your review, no wording changed.</small></span><span class="surface">HTR suggestion</span></li>
     </ul>
   </section>
 
@@ -187,15 +174,18 @@
   <section class="ops">
     <div class="head"><span class="no">OPS</span><h2>Waiting on the Ops lead</h2><span class="note">staff gates — context, not your fix list</span></div>
     <div class="ops-grid">
-      <div class="cell"><div class="c">4</div><div class="l">Leaked FBS rows to reconcile (527 Jun-24 · 527 Jul-12 · 693 Jul-15 · 901 Jul-15) — Action row filed; sanction &amp; execute</div></div>
-      <div class="cell"><div class="c">1</div><div class="l">Verification tonight: the 20:10 HEAVY-PM Concierge pass must show every JOB line (trigger re-enabled Jul 21)</div></div>
-      <div class="cell"><div class="c">0</div><div class="l">HTR suggestions pending review (queue cleared this morning; was 8 on Jul 18)</div></div>
+      <div class="cell"><div class="c">8</div><div class="l">Coverage-gap shifts to claim (Jul 18–19 · FBS &amp; Monitor)</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Ester V. — Jul 18 693 FBS needs an alarm code before arrival</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">509 cooling setpoint — today's staff checklist</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Amy B. — correct FBS board over-tier (repeat renter, not FBS)</div></div>
+      <div class="cell"><div class="c">1</div><div class="l">Panel "Credentials In Conflict" ×4 — clear duplicate user codes</div></div>
+      <div class="cell"><div class="c">8</div><div class="l">HTR suggestions pending review (oldest ~7 days)</div></div>
     </div>
-    <p class="ops-note">The Best O studio-viewing ticket's stale gate was repaired and its Skedda-booking Action row raised (<b>For = Ops Lead</b>). This morning's HTR decisions: viewing-request row created (Peerspace/Giggster only), payment thank-you dropped for returning self-book renters, PBF rewording rejected, amenity event-fit follow-up applied.</p>
+    <p class="ops-note">These sit on the Ops-lead brief (<b>For = Ops Lead</b>) and on the Night Watch "Waiting on you". Listed here only so nothing hides — they're staff gates, not agent mistakes. One item (a Studio 901 tour for Sangah L.) is routed <b>For = Owner</b> and you're already handling it live.</p>
   </section>
 
   <footer>
-    <span>Point-in-time Fixer Report, compiled interactively with Junyan (daily-run session). Sources: 🔧 Sweep Feedback · ✅ Actions to Perform · Jul 21 handoff.</span>
+    <span>Point-in-time Fixer Report, compiled manually ahead of the automated 02:35 pass. Sources: ✅ Actions to Perform · 🔧 Sweep Feedback · overnight run reports.</span>
     <span>Rows open in Notion ↗ · codes &amp; contact detail live only in Notion.</span>
   </footer>
 

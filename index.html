@@ -79,6 +79,11 @@
   .fix .move { display:inline-block; font:600 .72rem/1 var(--sans); color:var(--brand); margin-top:.6rem; letter-spacing:.02em; }
   a.src { color:inherit; text-decoration:none; border-bottom:1px solid var(--hair); }
   a.src:hover{ color:var(--brand); border-color:var(--brand); }
+  .fix.done { opacity:.7; }
+  .fix.done .stripe { background:var(--done); }
+  .fix.done .title { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
+  .pill.done { background:var(--done-soft); color:var(--done); box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--done) 32%,transparent); }
+  .fix .res { font:650 .86rem/1.4 var(--sans); color:var(--done); margin:.55rem 0 0; }
 
   .agent-list { list-style:none; padding:0; margin:.6rem 0 0; display:grid; gap:.55rem; }
   .agent-list li { display:grid; grid-template-columns:1fr auto; gap:.3rem 1rem; align-items:baseline; padding:.75rem 0; border-top:1px solid var(--hair); }
@@ -107,13 +112,13 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · compiled 8:45 AM</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · compiled 8:45 AM · updated Jul 22 — 5/5 yours cleared</span></div>
     <h1>The Fixer<em> Report</em></h1>
-    <p class="verdict">The urgent item is <b>cleared</b> — Anthropic API credits were reloaded this morning, so the Claude-step Zaps (including the Emergency Call Line) should recover; verify on the next run. Five items are yours; seven recurring classes are queued for the loop. This morning's HTR review queue was cleared to zero.</p>
+    <p class="verdict"><b>All five of your items are cleared</b> (updated Jul 22). ① the Emergency Call Line Zap is intentionally off with a new line live; ② "The Closer" is fully decommissioned; ③ the 509 SDM logger is set up in the cloud and only awaits a hot-day reading; ④ the Reconcile 2 view is filtered; ⑤ the Dropbox Sign label is confirmed as <b>Sales - Agreements</b>. Seven recurring classes remain queued for the loop.</p>
   </header>
 
   <nav class="score" aria-label="At a glance">
-    <div><span class="n hot-n">5</span><span class="k">Fix these — you</span></div>
+    <div><span class="n" style="color:var(--done)">0</span><span class="k">Left for you — 5 cleared</span></div>
     <div><span class="n act-n">0</span><span class="k">of them urgent</span></div>
     <div><span class="n">7</span><span class="k">Fix the agent (loop)</span></div>
     <div><span class="n wait-n">3</span><span class="k">Ops-lead gates</span></div>
@@ -123,48 +128,53 @@
   <section class="you">
     <div class="head"><span class="no">YOU</span><h2>Fix these — you</h2><span class="note">agent mistakes &amp; live wrong states only you can correct</span></div>
 
-    <div class="fix sev-wait">
+    <div class="fix sev-wait done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Anthropic API credits reloaded — verify the Claude-step Zaps recover</span><span class="pill wait">Verify next run</span></div>
+        <div class="top"><span class="title">Anthropic API credits reloaded — verify the Claude-step Zaps recover</span><span class="pill done">✓ Cleared</span></div>
         <p class="meta">Billing · reloaded Jul 21 AM (was failing since Jul 19 21:01)</p>
         <p class="desc">The Emergency Call Line Zap (and likely <b>all Claude-step Zaps</b>) failed with 400 invalid_request_error while the balance was empty. Credits are back — <b>confirm the next Zap runs clean</b>, then close the feedback row. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a37503281c481e78c13ce6fb5381122">open the row ↗</a></p>
+        <p class="res">✓ Jul 22 — the Emergency Call Line Zap is intentionally OFF; a new emergency line is live. No recovery needed.</p>
       </div>
     </div>
 
-    <div class="fix sev-act">
+    <div class="fix sev-act done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Retired “The Closer” still runs nightly (~21:34 EDT)</span><span class="pill act">Disable the trigger</span></div>
+        <div class="top"><span class="title">Retired “The Closer” still runs nightly (~21:34 EDT)</span><span class="pill done">✓ Cleared</span></div>
         <p class="meta">Runtime · Custodian night pass · Jul 19</p>
         <p class="desc">Ticket 027 folded end-of-day into the Custodian, but the Closer's cloud trigger was never disabled. It has <b>filed reports and done production work two consecutive evenings</b>. One-time fix tracked <b>For = Junyan</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a17503281c4813789e8e7d5bcd3d31e">open the row ↗</a></p>
+        <p class="res">✓ Jul 22 — confirmed fully decommissioned. Not present in any scheduler (local, Zapier, IFTTT, or cloud triggers).</p>
       </div>
     </div>
 
-    <div class="fix sev-act">
+    <div class="fix sev-act done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">509 thermostat — wire a real inside-temp read</span><span class="pill act">Set up SDM</span></div>
+        <div class="top"><span class="title">509 thermostat — wire a real inside-temp read</span><span class="pill done">✓ Set up · awaiting hot-day reading</span></div>
         <p class="meta">Facilities · design row Applied-in-part · Jul 21</p>
         <p class="desc">The <b>▼26 telemetry rung is live</b> (applet FZit26mP). Remaining: decide the Google SDM Device Access setup and capture one hot-day live reading. Verification: the next <b>≥28°C day</b> should emit ▼26 crossings and <b>no malfunction alert</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39f7503281c4815aae79e6830e016721">open the row ↗</a></p>
+        <p class="res">✓ Jul 22 — SDM Device Access is set up; cloud logger live (junyanboon/sdm-logger, hourly). Only the ≥28°C verification reading remains — passive wait.</p>
       </div>
     </div>
 
-    <div class="fix sev-act">
+    <div class="fix sev-act done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Notion UI: filter a “Reconcile 2” FBS-board view</span><span class="pill act">Add the filter</span></div>
+        <div class="top"><span class="title">Notion UI: filter a “Reconcile 2” FBS-board view</span><span class="pill done">✓ Cleared</span></div>
         <p class="meta">Notion UI · from Jul 21 punch list</p>
         <p class="desc">Add <b>Status ∈ {Upcoming, In Studio}</b> to a “Reconcile 2” view on the FBS board. The API can't set status filters, so this is a <b>1-minute manual view edit</b>.</p>
+        <p class="res">✓ Jul 22 — Reconcile 2 view filtered on Booking Status (manual edit; API confirmed unable to persist status filters).</p>
       </div>
     </div>
 
-    <div class="fix sev-wait">
+    <div class="fix sev-wait done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Gmail: verify the production Dropbox Sign label</span><span class="pill wait">Confirm the label</span></div>
+        <div class="top"><span class="title">Gmail: verify the production Dropbox Sign label</span><span class="pill done">✓ Cleared</span></div>
         <p class="meta">Gmail · JOB 2 mapping · Jul 21</p>
         <p class="desc">Confirm the exact Dropbox Sign label name on the production inbox (<b>info@</b>). The two new Triage Label Mapping rows are live; they need the <b>real label string</b> verified.</p>
+        <p class="res">✓ Jul 22 — verified against a live Dropbox Sign email: label is <b>Sales - Agreements</b>. Both mapping rows already carry it (stamped CONFIRMED Jul 21).</p>
       </div>
     </div>
   </section>

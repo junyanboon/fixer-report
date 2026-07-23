@@ -19,7 +19,7 @@
     --text:Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
   }
   @media (prefers-color-scheme: dark) { :root {
-    --paper:#151210; --ink:#ede9e2; --mute:#98918655; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
+    --paper:#151210; --ink:#ede9e2; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
     --brand:#a685f0;
     --hot:#e87b6c;  --hot-soft:#3a1b16;
     --act:#e0a24f;  --act-soft:#33270f;
@@ -63,7 +63,6 @@
   .head .note { font-size:.83rem; color:var(--mute); margin-left:auto; text-align:right; max-width:22ch; }
   section.you .no{background:var(--hot);} section.you h2{color:var(--hot);}
   section.agent .no{background:var(--brand);} section.agent h2{color:var(--brand);}
-  section.ops .no{background:var(--wait);} section.ops h2{color:var(--wait);}
 
   .fix { display:grid; grid-template-columns:6px 1fr; gap:0 1rem; background:var(--panel); border:1px solid var(--hair); border-radius:8px; margin-top:.9rem; overflow:hidden; }
   .fix .stripe { background:var(--act); }
@@ -76,7 +75,6 @@
   .fix .meta { font:600 .7rem/1.3 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:.35rem 0 0; }
   .fix .desc { font-size:.92rem; color:var(--mute); margin:.5rem 0 0; max-width:74ch; }
   .fix .desc b { color:var(--ink); font-weight:650; }
-  .fix .move { display:inline-block; font:600 .72rem/1 var(--sans); color:var(--brand); margin-top:.6rem; letter-spacing:.02em; }
   a.src { color:inherit; text-decoration:none; border-bottom:1px solid var(--hair); }
   a.src:hover{ color:var(--brand); border-color:var(--brand); }
   .fix.done { opacity:.7; }
@@ -84,14 +82,6 @@
   .fix.done .title { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
   .pill.done { background:var(--done-soft); color:var(--done); box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--done) 32%,transparent); }
   .fix .res { font:650 .86rem/1.4 var(--sans); color:var(--done); margin:.55rem 0 0; }
-  /* Compact mode — show only the title + pill on each item */
-  .fix .meta, .fix .desc, .fix .res { display:none; }
-  .fix .body { padding:.82rem 1.2rem .82rem 0; }
-  .agent-list .t small { display:none; }
-  .agent-list li { padding:.6rem 0; }
-  .agent-list li.done { opacity:.7; }
-  .agent-list li.done .t { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
-  .agent-list li.done .surface { color:var(--done); }
 
   .agent-list { list-style:none; padding:0; margin:.6rem 0 0; display:grid; gap:.55rem; }
   .agent-list li { display:grid; grid-template-columns:1fr auto; gap:.3rem 1rem; align-items:baseline; padding:.75rem 0; border-top:1px solid var(--hair); }
@@ -99,18 +89,15 @@
   .agent-list .t { font:650 .98rem/1.35 var(--sans); }
   .agent-list .t small { display:block; font:400 .84rem/1.35 var(--text); color:var(--mute); margin-top:.15rem; max-width:72ch; }
   .agent-list .surface { font:600 .66rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--mute); white-space:nowrap; padding-top:.15rem; }
-
-  .ops-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:.55rem; margin-top:.7rem; }
-  .ops-grid .cell { background:var(--panel); border:1px solid var(--hair); border-radius:7px; padding:.7rem .85rem; }
-  .ops-grid .cell .c { font:800 1.5rem/1 var(--cond); color:var(--wait); font-variant-numeric:tabular-nums; }
-  .ops-grid .cell .l { font-size:.82rem; color:var(--mute); margin-top:.25rem; }
-  .ops-note { font-size:.85rem; color:var(--mute); margin-top:.8rem; max-width:70ch; }
+  .agent-list li.done { opacity:.7; }
+  .agent-list li.done .t { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
+  .agent-list li.done .surface { color:var(--done); }
 
   footer { margin-top:3.6rem; border-top:2px solid var(--ink); padding-top:1rem; display:flex; flex-wrap:wrap; gap:.5rem 2rem; justify-content:space-between; font-size:.76rem; color:var(--mute); }
 
   @media (prefers-reduced-motion: no-preference) {
     .mast,.score,section,footer { animation:rise .5s cubic-bezier(.2,.7,.2,1) both; }
-    .score{animation-delay:.06s;} section:nth-of-type(1){animation-delay:.12s;} section:nth-of-type(2){animation-delay:.19s;} section:nth-of-type(3){animation-delay:.26s;} footer{animation-delay:.32s;}
+    .score{animation-delay:.06s;} section:nth-of-type(1){animation-delay:.12s;} section:nth-of-type(2){animation-delay:.19s;} footer{animation-delay:.26s;}
     @keyframes rise { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
   }
   @media (max-width:560px){ .score div{border-left:0;border-top:1px solid var(--hair);} .score div:first-child{border-top:0;} .agent-list li{grid-template-columns:1fr;} .agent-list .surface{padding-top:0;} }
@@ -120,90 +107,103 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · updated Jul 22 — all 12 fix items cleared</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 23, 2026</span></div>
     <h1>The Fixer<em> Report</em></h1>
-    <p class="verdict"><b>All five of your items are cleared</b> (updated Jul 22). ① the Emergency Call Line Zap is intentionally off with a new line live; ② "The Closer" is fully decommissioned; ③ the 509 SDM logger is set up in the cloud and only awaits a hot-day reading; ④ the Reconcile 2 view is filtered; ⑤ the Dropbox Sign label is confirmed as <b>Sales - Agreements</b>. Seven recurring classes remain queued for the loop.</p>
+    <p class="verdict">The Jai Smith overtime saga is <b>resolved</b> — the Skedda MCP had three read/write bugs (all fixed &amp; deployed today), the block exists at $11.30, invoice sent. Left for you: <b>the 509 thermostat drift, the Timekeeper's queue-write code, two trigger grants, a WiFi HTR card, and two fresh monitor flags to eyeball</b>. 21 stale feedback rows were swept to Applied.</p>
   </header>
 
   <nav class="score" aria-label="At a glance">
-    <div><span class="n" style="color:var(--done)">0</span><span class="k">Left for you — 5 cleared</span></div>
-    <div><span class="n act-n">0</span><span class="k">of them urgent</span></div>
-    <div><span class="n" style="color:var(--done)">7</span><span class="k">Loop items — all cleared</span></div>
+    <div><span class="n hot-n">5</span><span class="k">Left for you</span></div>
+    <div><span class="n act-n">2</span><span class="k">of them urgent-ish</span></div>
+    <div><span class="n" style="color:var(--brand)">3</span><span class="k">Loop items open</span></div>
+    <div><span class="n" style="color:var(--done)">2 + 21</span><span class="k">Cleared today + rows swept</span></div>
   </nav>
 
-  <!-- FIX THESE — YOU: agent mistakes / live wrong states only Junyan can correct -->
+  <!-- FIX THESE — YOU -->
   <section class="you">
     <div class="head"><span class="no">YOU</span><h2>Fix these — you</h2><span class="note">agent mistakes &amp; live wrong states only you can correct</span></div>
 
+    <div class="fix sev-hot">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">Two fresh Run Monitor flags post-re-fit: Doorman 37h, Bookkeeper 26h</span><span class="pill hot">Check today</span></div>
+        <p class="meta">Run monitoring · flagged Jul 23 · AFTER the Jul-22 cadence re-fit</p>
+        <p class="desc">Unlike the 16 pre-re-fit noise rows (swept), these two fired <b>after</b> the roster was re-fit, so they may be <b>real stalls</b>: The Doorman (local Alarm.com morning run, expected 06:00) and The Bookkeeper (~05:30). Check the Staff Console; if real, restart the runs. <a class="src" href="https://app.notion.com/3a67503281c48189aeb2d8cea3c00b16">Doorman ↗</a> · <a class="src" href="https://app.notion.com/3a67503281c48178aa38d36dc5b31131">Bookkeeper ↗</a></p>
+      </div>
+    </div>
+
+    <div class="fix sev-act">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">509 thermostat setpoint keeps drifting off COOL 26 (~19–23°C)</span><span class="pill act">Hardware</span></div>
+        <p class="meta">Facilities · recurred Jul 22 (×2 within 90 min) + Jul 23 13:05</p>
+        <p class="desc">Setpoint drifts down from an armed COOL 26 with <b>no controller command sent</b> — HVAC then actively cools toward ~23°C. Looks like a device/schedule/eco override on the Nest itself, not agent code. Per-day rows consolidated; the class now tracks on one row. SDM live-read is available for evidence (<b>tools/sdm-link.sh</b>). Check the Nest app for a stored schedule/eco setting, or decide a swap. <a class="src" href="https://app.notion.com/3a67503281c48102a0dce7e64acd5a2b">open the row ↗</a></p>
+      </div>
+    </div>
+
+    <div class="fix sev-act">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">The Timekeeper still ships blank Drafted Body — its code needs the Jul-22 rule</span><span class="pill act">Bot code</span></div>
+        <p class="meta">Cloud bot · Custodian JOB 9 · Jul 23 (Fabio overtime-T1 row)</p>
+        <p class="desc">The "Drafted Body at creation" house-rule reached the HOUSE-RULES-reading desk robots but <b>not The Timekeeper's queue-write path</b> — it keeps emitting held overtime rows with Drafted Body empty, so wording-edit provenance is lost. Fix surface: its overtime queue-write, set <b>Drafted Body = Message Body</b> at creation. <a class="src" href="https://app.notion.com/3a67503281c4816da53ddb0ff6cbc882">action row ↗</a> · <a class="src" href="https://app.notion.com/3a67503281c48130b6a9ddda1daa3a6d">feedback ↗</a></p>
+      </div>
+    </div>
+
+    <div class="fix sev-wait">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">Two cloud-trigger grants pending: connectors for the Custodian, repo for the Concierge</span><span class="pill wait">Config · 2 min</span></div>
+        <p class="meta">Cloud triggers · Pending Review since Jul 22</p>
+        <p class="desc">① Enable <b>alarm-mcp + skedda-mcp</b> on the Custodian trigger (trig_01KbCQ…) so the Verifier can independently re-read machine-readable gates. ② Grant the Concierge trigger (trig_01XVRe…) read/write on <b>junyanboon/desk-correspondence</b>. <a class="src" href="https://app.notion.com/3a57503281c481b7b088dc1921cb9ed3">row ① ↗</a> · <a class="src" href="https://app.notion.com/3a57503281c481ef86fac427d142ecc4">row ② ↗</a></p>
+      </div>
+    </div>
+
+    <div class="fix sev-wait">
+      <div class="stripe"></div>
+      <div class="body">
+        <div class="top"><span class="title">Accept the "studio WiFi down" HTR fast card</span><span class="pill wait">Your call</span></div>
+        <p class="meta">How to Respond DB · your own directive, Jul 23 15:29 · robots never write HTR</p>
+        <p class="desc">Proposed card drafted after Maggie Morrison's Jul-23 WiFi report got a freehand ack (no card existed). Human accept creates the HTR row. <a class="src" href="https://app.notion.com/3a67503281c481d9a350e1e2b3e5ae4c">open the proposal ↗</a></p>
+      </div>
+    </div>
+
     <div class="fix sev-wait done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Anthropic API credits reloaded — verify the Claude-step Zaps recover</span><span class="pill done">✓ Cleared</span></div>
-        <p class="meta">Billing · reloaded Jul 21 AM (was failing since Jul 19 21:01)</p>
-        <p class="desc">The Emergency Call Line Zap (and likely <b>all Claude-step Zaps</b>) failed with 400 invalid_request_error while the balance was empty. Credits are back — <b>confirm the next Zap runs clean</b>, then close the feedback row. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a37503281c481e78c13ce6fb5381122">open the row ↗</a></p>
-        <p class="res">✓ Jul 22 — the Emergency Call Line Zap is intentionally OFF; a new emergency line is live. No recovery needed.</p>
+        <div class="top"><span class="title">Jai Smith $11.30 overtime — collect</span><span class="pill done">✓ Set up · awaiting her payment</span></div>
+        <p class="meta">Money · booking 117937426 verified · invoice sent Jul 23</p>
+        <p class="desc">Block created + verified on 509A Jul 21 (8:00–8:15 PM, $11.30, attached to her account), invoice sent via Skedda. When it reads <b>[Paid]</b>: set the reopened row Processed + Reconciled and resolve the CC ticket. Do not raise a second charge. <a class="src" href="https://app.notion.com/3a57503281c481e6acaccacb186d781b">open the row ↗</a></p>
+        <p class="res">✓ Nothing to do until she pays — collection is Gate: Artist.</p>
       </div>
     </div>
 
     <div class="fix sev-act done">
       <div class="stripe"></div>
       <div class="body">
-        <div class="top"><span class="title">Retired “The Closer” still runs nightly (~21:34 EDT)</span><span class="pill done">✓ Cleared</span></div>
-        <p class="meta">Runtime · Custodian night pass · Jul 19</p>
-        <p class="desc">Ticket 027 folded end-of-day into the Custodian, but the Closer's cloud trigger was never disabled. It has <b>filed reports and done production work two consecutive evenings</b>. One-time fix tracked <b>For = Junyan</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/3a17503281c4813789e8e7d5bcd3d31e">open the row ↗</a></p>
-        <p class="res">✓ Jul 22 — confirmed fully decommissioned. Not present in any scheduler (local, Zapier, IFTTT, or cloud triggers).</p>
-      </div>
-    </div>
-
-    <div class="fix sev-act done">
-      <div class="stripe"></div>
-      <div class="body">
-        <div class="top"><span class="title">509 thermostat — wire a real inside-temp read</span><span class="pill done">✓ Set up · awaiting hot-day reading</span></div>
-        <p class="meta">Facilities · design row Applied-in-part · Jul 21</p>
-        <p class="desc">The <b>▼26 telemetry rung is live</b> (applet FZit26mP). Remaining: decide the Google SDM Device Access setup and capture one hot-day live reading. Verification: the next <b>≥28°C day</b> should emit ▼26 crossings and <b>no malfunction alert</b>. <a class="src" target="_blank" rel="noopener" href="https://app.notion.com/39f7503281c4815aae79e6830e016721">open the row ↗</a></p>
-        <p class="res">✓ Jul 22 — SDM Device Access is set up; cloud logger live (junyanboon/sdm-logger, hourly). Only the ≥28°C verification reading remains — passive wait.</p>
-      </div>
-    </div>
-
-    <div class="fix sev-act done">
-      <div class="stripe"></div>
-      <div class="body">
-        <div class="top"><span class="title">Notion UI: filter a “Reconcile 2” FBS-board view</span><span class="pill done">✓ Cleared</span></div>
-        <p class="meta">Notion UI · from Jul 21 punch list</p>
-        <p class="desc">Add <b>Status ∈ {Upcoming, In Studio}</b> to a “Reconcile 2” view on the FBS board. The API can't set status filters, so this is a <b>1-minute manual view edit</b>.</p>
-        <p class="res">✓ Jul 22 — Reconcile 2 view filtered on Booking Status (manual edit; API confirmed unable to persist status filters).</p>
-      </div>
-    </div>
-
-    <div class="fix sev-wait done">
-      <div class="stripe"></div>
-      <div class="body">
-        <div class="top"><span class="title">Gmail: verify the production Dropbox Sign label</span><span class="pill done">✓ Cleared</span></div>
-        <p class="meta">Gmail · JOB 2 mapping · Jul 21</p>
-        <p class="desc">Confirm the exact Dropbox Sign label name on the production inbox (<b>info@</b>). The two new Triage Label Mapping rows are live; they need the <b>real label string</b> verified.</p>
-        <p class="res">✓ Jul 22 — verified against a live Dropbox Sign email: label is <b>Sales - Agreements</b>. Both mapping rows already carry it (stamped CONFIRMED Jul 21).</p>
+        <div class="top"><span class="title">"Is the Skedda API broken?" — no; the MCP wrapper was, three ways</span><span class="pill done">✓ Cleared</span></div>
+        <p class="meta">Tooling · diagnosed + fixed + deployed today (skedda-mcp rev 00007)</p>
+        <p class="desc">① user name/email/phone were read under wrong field names (always null); ② recurring bookings reported under their series' first date — this is what hid Jai's 7–8 PM block and derailed two sessions; ③ priced-unpaid bookings need paymentStatus 2, which the tool couldn't emit. All fixed, plus a new <b>find_user</b> tool. Verified live.</p>
+        <p class="res">✓ Jul 23 — deployed to Cloud Run; Jul-21 calendar now reads correctly end-to-end.</p>
       </div>
     </div>
   </section>
 
-  <!-- FIX THE AGENT: open Sweep Feedback (recurring classes / design sessions) -->
+  <!-- FIX THE AGENT -->
   <section class="agent">
-    <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">all 7 cleared in the Jul 22 interactive run</span></div>
+    <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">recurring classes queued for the improvement loop</span></div>
     <ul class="agent-list">
-      <li class="done"><span class="t">Run Monitor cried “agent missing” ~10 times over Jul 19–21<small>Timekeeper ×3, Concierge ×3, Doorman, Receptionist ×2, Custodian, Watchman and Closer were flagged. Triage real stalls vs monitor noise, then re-fit expected-cadence windows — the check-in/staleness model over-fires against actual schedules.</small></span><span class="surface">✓ roster re-fit + Closer paused + Timekeeper 29h</span></li>
-      <li class="done"><span class="t">Send Engine silently dropped a released Email reply<small>“Gmail thread not found” hit the David Diep/Tess English T11 summary; Junyan recovered manually. Two transient Google errors landed the same night. Add dispatch verification + failure escalation so rows cannot look handled while claimed-but-not-dispatched.</small></span><span class="surface">✓ fixed in engine v5–v11</span></li>
-      <li class="done"><span class="t">SMS Message Sender dispatched an Email row with an empty recipient<small>Two Gmail bounces landed Jul 20 at 16:28 and 16:36. Add a recipient-present guard before dispatch.</small></span><span class="surface">✓ validate_ guard + house-rule</span></li>
-      <li class="done"><span class="t">Backfill Drafted Body at queue creation<small>If Drafted Body is empty, copy Message Body → Drafted Body so wording edits keep provenance. Punch-list carryover from Jul 18 LOOP #1.</small></span><span class="surface">✓ house-rules canon 1cf093c</span></li>
-      <li class="done"><span class="t">Sales tickets are born with blank Position + the wrong SOP<small>JAICYEA SMITH's community-rate request got the Platform-Event template, and a duplicate never consolidated. Set a real Position at birth and route the SOP by lead type.</small></span><span class="surface">✓ canon 3dbd95b</span></li>
-      <li class="done"><span class="t">Dedup FBS-monitor rows by booking id upstream<small>Booking 901 (QTrang Tran) appeared twice and disagreed: EVENT FBS “PARTIAL · 165M GAP” vs “Booking, QTrang T.” with no arrival.</small></span><span class="surface">✓ build.py 66dbf4b</span></li>
-      <li class="done"><span class="t">Codex Concierge Slack connector keeps failing drop-scan duty<small>Decide: fix connector reliability or drop the duty from Codex.</small></span><span class="surface">✓ Codex retired bb09a02</span></li>
+      <li><span class="t">Concurrent runtimes create duplicate records — add a pre-write dedup guard<small>Two instances in the Jul-22 window (Nicole Drury double confirmation; duplicate Anastasia CC ticket, the second reached Review uncaught). Fires rely on the local state file, blind to a peer's Notion writes. Standing ask: live existence check keyed on artist + booking + intent against Notion before any ticket create or message queue.</small></span><span class="surface"><a class="src" href="https://app.notion.com/3a67503281c481ff842eed5ae01f197f">row ↗</a></span></li>
+      <li><span class="t">Courtesy flows for non-Artist-DB renters produce untracked, un-dedupable records<small>Marco Alberto's 901 sound courtesy has no CC ticket anchor — no gate, no closure tracking, nothing for a second runtime to collide against. Rule: create the Artist + open a CC ticket first, and set the queue row's CC relation before queuing.</small></span><span class="surface"><a class="src" href="https://app.notion.com/3a67503281c481e7b785d71f437d096c">row ↗</a></span></li>
+      <li><span class="t">Orphan gates: reconcile passes clear an info gate but leave a stale Current Block + no Action row<small>Best O's viewing ticket sat invisible to the Awaiting-Staff digest. On recognizing a reply, the reconcile must rewrite Current Block to the real remaining gate AND raise the linked Action row.</small></span><span class="surface"><a class="src" href="https://app.notion.com/3a47503281c481d187e1e5cb27e5a1f6">row ↗</a></span></li>
+      <li class="done"><span class="t">Skedda MCP capability gaps (user lookup · recurrence · billable-unpaid)<small>The three gaps that stalled the Jai charge across two sessions.</small></span><span class="surface">✓ fixed + deployed rev 00007</span></li>
+      <li class="done"><span class="t">509 climate false-malfunction check<small>▼26 telemetry rung + SDM live-read both live; the check is re-fit.</small></span><span class="surface">✓ set up · awaiting a ≥28°C day</span></li>
     </ul>
   </section>
 
-
   <footer>
-    <span>Point-in-time Fixer Report, compiled interactively with Junyan (daily-run session). Sources: 🔧 Sweep Feedback · ✅ Actions to Perform · Jul 21 handoff.</span>
-    <span>Rows open in Notion ↗ · codes &amp; contact detail live only in Notion.</span>
+    <span>Point-in-time Fixer Report, compiled interactively with Junyan (daily run). Sources: 🔧 Sweep Feedback · ✅ Actions to Perform · Jul 21–22 report · jai-overtime-handoff.</span>
+    <span>Archive: <a class="src" href="2026-07-21.html">Jul 21–22</a> · <a class="src" href="2026-07-18.html">Jul 18</a> · rows open in Notion ↗</span>
   </footer>
 
 </div>

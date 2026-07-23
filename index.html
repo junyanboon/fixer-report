@@ -89,6 +89,9 @@
   .fix .body { padding:.82rem 1.2rem .82rem 0; }
   .agent-list .t small { display:none; }
   .agent-list li { padding:.6rem 0; }
+  .agent-list li.done { opacity:.7; }
+  .agent-list li.done .t { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
+  .agent-list li.done .surface { color:var(--done); }
 
   .agent-list { list-style:none; padding:0; margin:.6rem 0 0; display:grid; gap:.55rem; }
   .agent-list li { display:grid; grid-template-columns:1fr auto; gap:.3rem 1rem; align-items:baseline; padding:.75rem 0; border-top:1px solid var(--hair); }
@@ -117,7 +120,7 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · compiled 8:45 AM · updated Jul 22 — 5/5 yours cleared</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 21, 2026 · updated Jul 22 — all 12 fix items cleared</span></div>
     <h1>The Fixer<em> Report</em></h1>
     <p class="verdict"><b>All five of your items are cleared</b> (updated Jul 22). ① the Emergency Call Line Zap is intentionally off with a new line live; ② "The Closer" is fully decommissioned; ③ the 509 SDM logger is set up in the cloud and only awaits a hot-day reading; ④ the Reconcile 2 view is filtered; ⑤ the Dropbox Sign label is confirmed as <b>Sales - Agreements</b>. Seven recurring classes remain queued for the loop.</p>
   </header>
@@ -125,7 +128,7 @@
   <nav class="score" aria-label="At a glance">
     <div><span class="n" style="color:var(--done)">0</span><span class="k">Left for you — 5 cleared</span></div>
     <div><span class="n act-n">0</span><span class="k">of them urgent</span></div>
-    <div><span class="n">7</span><span class="k">Fix the agent (loop)</span></div>
+    <div><span class="n" style="color:var(--done)">7</span><span class="k">Loop items — all cleared</span></div>
     <div><span class="n wait-n">3</span><span class="k">Ops-lead gates</span></div>
   </nav>
 
@@ -186,15 +189,15 @@
 
   <!-- FIX THE AGENT: open Sweep Feedback (recurring classes / design sessions) -->
   <section class="agent">
-    <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">recurring classes — the improvement backlog, not today's to-do</span></div>
+    <div class="head"><span class="no">LOOP</span><h2>Fix the agent</h2><span class="note">all 7 cleared in the Jul 22 interactive run</span></div>
     <ul class="agent-list">
-      <li><span class="t">Run Monitor cried “agent missing” ~10 times over Jul 19–21<small>Timekeeper ×3, Concierge ×3, Doorman, Receptionist ×2, Custodian, Watchman and Closer were flagged. Triage real stalls vs monitor noise, then re-fit expected-cadence windows — the check-in/staleness model over-fires against actual schedules.</small></span><span class="surface">J24 Run monitoring</span></li>
-      <li><span class="t">Send Engine silently dropped a released Email reply<small>“Gmail thread not found” hit the David Diep/Tess English T11 summary; Junyan recovered manually. Two transient Google errors landed the same night. Add dispatch verification + failure escalation so rows cannot look handled while claimed-but-not-dispatched.</small></span><span class="surface">Send Engine (Apps Script)</span></li>
-      <li><span class="t">SMS Message Sender dispatched an Email row with an empty recipient<small>Two Gmail bounces landed Jul 20 at 16:28 and 16:36. Add a recipient-present guard before dispatch.</small></span><span class="surface">Notion SMS Sender Zap</span></li>
-      <li><span class="t">Backfill Drafted Body at queue creation<small>If Drafted Body is empty, copy Message Body → Drafted Body so wording edits keep provenance. Punch-list carryover from Jul 18 LOOP #1.</small></span><span class="surface">Message Queue Zap</span></li>
-      <li><span class="t">Sales tickets are born with blank Position + the wrong SOP<small>JAICYEA SMITH's community-rate request got the Platform-Event template, and a duplicate never consolidated. Set a real Position at birth and route the SOP by lead type.</small></span><span class="surface">Intake / Zapier auto-create</span></li>
-      <li><span class="t">Dedup FBS-monitor rows by booking id upstream<small>Booking 901 (QTrang Tran) appeared twice and disagreed: EVENT FBS “PARTIAL · 165M GAP” vs “Booking, QTrang T.” with no arrival.</small></span><span class="surface">FBS monitor</span></li>
-      <li><span class="t">Codex Concierge Slack connector keeps failing drop-scan duty<small>Decide: fix connector reliability or drop the duty from Codex.</small></span><span class="surface">JOB 4 drop scan</span></li>
+      <li class="done"><span class="t">Run Monitor cried “agent missing” ~10 times over Jul 19–21<small>Timekeeper ×3, Concierge ×3, Doorman, Receptionist ×2, Custodian, Watchman and Closer were flagged. Triage real stalls vs monitor noise, then re-fit expected-cadence windows — the check-in/staleness model over-fires against actual schedules.</small></span><span class="surface">✓ roster re-fit + Closer paused + Timekeeper 29h</span></li>
+      <li class="done"><span class="t">Send Engine silently dropped a released Email reply<small>“Gmail thread not found” hit the David Diep/Tess English T11 summary; Junyan recovered manually. Two transient Google errors landed the same night. Add dispatch verification + failure escalation so rows cannot look handled while claimed-but-not-dispatched.</small></span><span class="surface">✓ fixed in engine v5–v11</span></li>
+      <li class="done"><span class="t">SMS Message Sender dispatched an Email row with an empty recipient<small>Two Gmail bounces landed Jul 20 at 16:28 and 16:36. Add a recipient-present guard before dispatch.</small></span><span class="surface">✓ validate_ guard + house-rule</span></li>
+      <li class="done"><span class="t">Backfill Drafted Body at queue creation<small>If Drafted Body is empty, copy Message Body → Drafted Body so wording edits keep provenance. Punch-list carryover from Jul 18 LOOP #1.</small></span><span class="surface">✓ house-rules canon 1cf093c</span></li>
+      <li class="done"><span class="t">Sales tickets are born with blank Position + the wrong SOP<small>JAICYEA SMITH's community-rate request got the Platform-Event template, and a duplicate never consolidated. Set a real Position at birth and route the SOP by lead type.</small></span><span class="surface">✓ canon 3dbd95b</span></li>
+      <li class="done"><span class="t">Dedup FBS-monitor rows by booking id upstream<small>Booking 901 (QTrang Tran) appeared twice and disagreed: EVENT FBS “PARTIAL · 165M GAP” vs “Booking, QTrang T.” with no arrival.</small></span><span class="surface">✓ build.py 66dbf4b</span></li>
+      <li class="done"><span class="t">Codex Concierge Slack connector keeps failing drop-scan duty<small>Decide: fix connector reliability or drop the duty from Codex.</small></span><span class="surface">✓ Codex retired bb09a02</span></li>
     </ul>
   </section>
 

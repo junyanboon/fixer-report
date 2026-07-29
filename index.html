@@ -101,7 +101,7 @@
     @keyframes rise { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
   }
   @media (max-width:560px){ .score div{border-left:0;border-top:1px solid var(--hair);} .score div:first-child{border-top:0;} .agent-list li{grid-template-columns:1fr;} .agent-list .surface{padding-top:0;} }
-  /* Jul 28 — plain-language layout */
+  /* Jul 29 — plain-language layout */
   .fix .desc { font-size:.95rem; }
   .fix .title { font-size:1.06rem; }
   section.done .no{background:var(--done);} section.done h2{color:var(--done);}
@@ -123,16 +123,16 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 28, 2026</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 29, 2026</span></div>
     <h1>The Fixer<em> Report</em></h1>
     <p class="verdict">Big day. <b>None of the three "broken" things were broken.</b> The robots went quiet because we ran out of tokens. The thermostat was fine — people change it by hand, and dancers make heat. The blank drafts were a field you deleted on purpose. Three real bugs found and fixed underneath them. <b>Six things left for you.</b></p>
   </header>
 
   <nav class="score" aria-label="At a glance">
     <div><span class="n hot-n">6</span><span class="k">Left for you</span></div>
-    <div><span class="n act-n">2</span><span class="k">Take 2 minutes</span></div>
+    <div><span class="n act-n">1</span><span class="k">Takes 2 minutes</span></div>
     <div><span class="n" style="color:var(--brand)">15</span><span class="k">Repeat problems</span></div>
-    <div><span class="n" style="color:var(--done)">20</span><span class="k">Cleared today</span></div>
+    <div><span class="n" style="color:var(--done)">22</span><span class="k">Cleared today</span></div>
   </nav>
 
   <!-- ============ DO THESE ============ -->
@@ -140,8 +140,8 @@
     <div class="head"><span class="no">YOU</span><h2>Do these</h2><span class="note">only you can do them</span></div>
 
     <div class="row">
-      <div class="t">Turn on two cloud permissions
-        <small>Custodian needs alarm + Skedda. Concierge needs to read the canon repo.</small></div>
+      <div class="t">Let the Concierge read the canon repo
+        <small>Has to be done by hand in the cloud settings — there is no API for it. Its environment is <b>env_01BjzY9e8uFhWz3ZEUAcAe2c</b>. Grant read/write on <b>junyanboon/desk-correspondence</b>.</small></div>
       <span class="tag min">2 min</span>
     </div>
 
@@ -221,7 +221,7 @@
 
   <!-- ============ DONE ============ -->
   <section class="done">
-    <div class="head"><span class="no">DONE</span><h2>Done today</h2><span class="note">cleared Jul 28</span></div>
+    <div class="head"><span class="no">DONE</span><h2>Done today</h2><span class="note">cleared Jul 29</span></div>
     <div class="donewrap">
 
     <div class="row done">
@@ -266,11 +266,23 @@
       <span class="tag ok">✓ Fixed</span>
     </div>
 
+    <div class="row done">
+      <div class="t">The Custodian can now check the alarm and Skedda itself
+        <small>Turned both on. It used to trust what Notion said. Now it can look at the real panel — which matters, because a ticket marked <b>done</b> is what locked Vicky out.</small></div>
+      <span class="tag ok">✓ Done</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Told it the new tools exist
+        <small>Its instructions still listed the old tools and said the alarm one <b>"does not exist here."</b> It would have ignored the whole thing. Also told it: never book, edit or cancel in Skedda — read only.</small></div>
+      <span class="tag ok">✓ Done</span>
+    </div>
+
     </div>
   </section>
 
   <footer>
-    <span>Compiled Jul 28, 2026 · Junyan + Claude</span>
+    <span>Compiled Jul 29, 2026 · Junyan + Claude</span>
     <span>Archive:
       <a class="src" href="2026-07-23.html">Jul 23</a> ·
       <a class="src" href="2026-07-21.html">Jul 21</a> ·

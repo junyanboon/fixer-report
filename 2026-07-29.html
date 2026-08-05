@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dance Annex — The Fixer Report</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --paper:#f4f2ee; --ink:#1a1613; --mute:#726c63; --hair:#e0dcd3; --panel:#faf9f6;
+    --brand:#5b2fd4;
+    --hot:#bb3324;   --hot-soft:#f7e4e0;
+    --act:#a66300;   --act-soft:#f5e8d2;
+    --wait:#4f6079;  --wait-soft:#e7ebf1;
+    --done:#2c7a4e;  --done-soft:#e0eee7;
+    --cond:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",sans-serif;
+    --sans:"Avenir Next",Avenir,Seravek,"Segoe UI",Ubuntu,sans-serif;
+    --text:Seravek,"Avenir Next","Segoe UI",Ubuntu,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --paper:#151210; --ink:#ede9e2; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
+    --brand:#a685f0;
+    --hot:#e87b6c;  --hot-soft:#3a1b16;
+    --act:#e0a24f;  --act-soft:#33270f;
+    --wait:#93a7c9; --wait-soft:#1d2431;
+    --done:#6fbd92; --done-soft:#16291f;
+  }}
+  :root[data-theme="light"] {
+    --paper:#f4f2ee; --ink:#1a1613; --mute:#726c63; --hair:#e0dcd3; --panel:#faf9f6;
+    --brand:#5b2fd4; --hot:#bb3324; --hot-soft:#f7e4e0; --act:#a66300; --act-soft:#f5e8d2;
+    --wait:#4f6079; --wait-soft:#e7ebf1; --done:#2c7a4e; --done-soft:#e0eee7;
+  }
+  :root[data-theme="dark"] {
+    --paper:#151210; --ink:#ede9e2; --mute:#988f83; --hair:#332f2a; --panel:#1d1a16;
+    --brand:#a685f0; --hot:#e87b6c; --hot-soft:#3a1b16; --act:#e0a24f; --act-soft:#33270f;
+    --wait:#93a7c9; --wait-soft:#1d2431; --done:#6fbd92; --done-soft:#16291f;
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--paper); color:var(--ink); font:16px/1.55 var(--text); margin:0; padding:0 clamp(1rem,4vw,2.5rem) 5rem; }
+  .sheet { max-width:920px; margin:0 auto; }
+
+  .mast { padding:3rem 0 0; }
+  .kicker { display:flex; align-items:center; gap:.7rem; }
+  .kicker span { font:600 .72rem/1 var(--sans); letter-spacing:.28em; text-transform:uppercase; color:var(--mute); }
+  .kicker i { flex:1; height:1px; background:var(--hair); }
+  .mast h1 { font:800 clamp(2.8rem,10vw,5.6rem)/.92 var(--cond); text-transform:uppercase; letter-spacing:.01em; margin:.8rem 0 .5rem; text-wrap:balance; }
+  .mast h1 em { font-style:normal; color:var(--hot); }
+  .verdict { font:500 1.05rem/1.5 var(--text); color:var(--ink); max-width:60ch; }
+  .verdict b { color:var(--hot); font-weight:700; }
+
+  .score { display:grid; grid-template-columns:repeat(auto-fit,minmax(0,1fr)); border-top:2px solid var(--ink); border-bottom:1px solid var(--hair); margin:2rem 0 0; }
+  .score div { display:flex; align-items:baseline; gap:.7rem; padding:1.1rem .4rem 1.2rem 1.1rem; border-left:1px solid var(--hair); }
+  .score div:first-child { border-left:0; padding-left:.2rem; }
+  .score .n { font:800 clamp(2.4rem,6.5vw,3.6rem)/1 var(--cond); font-variant-numeric:tabular-nums; }
+  .score .k { font:600 .7rem/1.35 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--mute); max-width:9em; }
+  .hot-n{color:var(--hot);} .act-n{color:var(--act);} .wait-n{color:var(--wait);}
+
+  section { margin-top:3.2rem; }
+  .head { display:flex; align-items:baseline; gap:1rem; margin-bottom:.3rem; }
+  .head .no { font:800 .95rem/1 var(--cond); color:var(--paper); padding:.34rem .58rem .28rem; border-radius:4px; letter-spacing:.04em; white-space:nowrap; }
+  .head h2 { font:800 clamp(1.4rem,4vw,2rem)/1 var(--cond); text-transform:uppercase; letter-spacing:.03em; margin:0; }
+  .head .note { font-size:.83rem; color:var(--mute); margin-left:auto; text-align:right; max-width:22ch; }
+  section.you .no{background:var(--hot);} section.you h2{color:var(--hot);}
+  section.agent .no{background:var(--brand);} section.agent h2{color:var(--brand);}
+
+  .fix { display:grid; grid-template-columns:6px 1fr; gap:0 1rem; background:var(--panel); border:1px solid var(--hair); border-radius:8px; margin-top:.9rem; overflow:hidden; }
+  .fix .stripe { background:var(--act); }
+  .fix.sev-hot .stripe{background:var(--hot);} .fix.sev-act .stripe{background:var(--act);} .fix.sev-wait .stripe{background:var(--wait);}
+  .fix .body { padding:1.05rem 1.2rem 1.15rem 0; }
+  .fix .top { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .8rem; }
+  .fix .title { font:700 1.12rem/1.3 var(--sans); letter-spacing:-.01em; }
+  .fix .pill { font:700 .68rem/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; padding:.4rem .6rem; border-radius:999px; white-space:nowrap; }
+  .pill.hot{background:var(--hot);color:var(--paper);} .pill.act{background:var(--act-soft);color:var(--act);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--act) 30%,transparent);} .pill.wait{background:var(--wait-soft);color:var(--wait);}
+  .fix .meta { font:600 .7rem/1.3 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:.35rem 0 0; }
+  .fix .desc { font-size:.92rem; color:var(--mute); margin:.5rem 0 0; max-width:74ch; }
+  .fix .desc b { color:var(--ink); font-weight:650; }
+  a.src { color:inherit; text-decoration:none; border-bottom:1px solid var(--hair); }
+  a.src:hover{ color:var(--brand); border-color:var(--brand); }
+  .fix.done { opacity:.7; }
+  .fix.done .stripe { background:var(--done); }
+  .fix.done .title { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
+  .pill.done { background:var(--done-soft); color:var(--done); box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--done) 32%,transparent); }
+  .fix .res { font:650 .86rem/1.4 var(--sans); color:var(--done); margin:.55rem 0 0; }
+
+  .agent-list { list-style:none; padding:0; margin:.6rem 0 0; display:grid; gap:.55rem; }
+  .agent-list li { display:grid; grid-template-columns:1fr auto; gap:.3rem 1rem; align-items:baseline; padding:.75rem 0; border-top:1px solid var(--hair); }
+  .agent-list li:first-child{border-top:0;}
+  .agent-list .t { font:650 .98rem/1.35 var(--sans); }
+  .agent-list .t small { display:block; font:400 .84rem/1.35 var(--text); color:var(--mute); margin-top:.15rem; max-width:72ch; }
+  .agent-list .surface { font:600 .66rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--mute); white-space:nowrap; padding-top:.15rem; }
+  .agent-list li.done { opacity:.7; }
+  .agent-list li.done .t { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 55%,transparent); }
+  .agent-list li.done .surface { color:var(--done); }
+
+  footer { margin-top:3.6rem; border-top:2px solid var(--ink); padding-top:1rem; display:flex; flex-wrap:wrap; gap:.5rem 2rem; justify-content:space-between; font-size:.76rem; color:var(--mute); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mast,.score,section,footer { animation:rise .5s cubic-bezier(.2,.7,.2,1) both; }
+    .score{animation-delay:.06s;} section:nth-of-type(1){animation-delay:.12s;} section:nth-of-type(2){animation-delay:.19s;} footer{animation-delay:.26s;}
+    @keyframes rise { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+  }
+  @media (max-width:560px){ .score div{border-left:0;border-top:1px solid var(--hair);} .score div:first-child{border-top:0;} .agent-list li{grid-template-columns:1fr;} .agent-list .surface{padding-top:0;} }
+  /* Jul 29 — plain-language layout */
+  .fix .desc { font-size:.95rem; }
+  .fix .title { font-size:1.06rem; }
+  section.done .no{background:var(--done);} section.done h2{color:var(--done);}
+  .donewrap { border-top:2px solid var(--done); margin-top:1rem; padding-top:.4rem; }
+  .row { display:grid; grid-template-columns:1fr auto; gap:.2rem 1rem; align-items:baseline; padding:.85rem 0; border-top:1px solid var(--hair); }
+  .row:first-of-type{border-top:0;}
+  .row .t { font:700 1.02rem/1.35 var(--sans); }
+  .row .t small { display:block; font:400 .9rem/1.4 var(--text); color:var(--mute); margin-top:.2rem; max-width:64ch; }
+  .row .tag { font:700 .66rem/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; padding:.38rem .55rem; border-radius:999px; white-space:nowrap; }
+  .tag.min{background:var(--act-soft);color:var(--act);} .tag.ask{background:var(--wait-soft);color:var(--wait);}
+  .tag.money{background:var(--hot);color:var(--paper);} .tag.ok{background:var(--done-soft);color:var(--done);}
+  .row.done .t { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:color-mix(in srgb,var(--done) 50%,transparent); }
+  .row.done { opacity:.82; }
+  .more { font-size:.86rem; color:var(--mute); margin:.9rem 0 0; }
+  @media (max-width:560px){ .row{grid-template-columns:1fr;} .row .tag{justify-self:start;margin-top:.35rem;} }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Jul 29, 2026</span></div>
+    <h1>The Fixer<em> Report</em></h1>
+    <p class="verdict">Big day. <b>None of the three "broken" things were broken.</b> The robots went quiet because we ran out of tokens. The thermostat was fine — people change it by hand, and dancers make heat. The blank drafts were a field you deleted on purpose. Three real bugs found and fixed underneath them. <b>Six things left for you.</b></p>
+  </header>
+
+  <nav class="score" aria-label="At a glance">
+    <div><span class="n hot-n">6</span><span class="k">Left for you</span></div>
+    <div><span class="n act-n">1</span><span class="k">Takes 2 minutes</span></div>
+    <div><span class="n" style="color:var(--brand)">15</span><span class="k">Repeat problems</span></div>
+    <div><span class="n" style="color:var(--done)">22</span><span class="k">Cleared today</span></div>
+  </nav>
+
+  <!-- ============ DO THESE ============ -->
+  <section class="you">
+    <div class="head"><span class="no">YOU</span><h2>Do these</h2><span class="note">only you can do them</span></div>
+
+    <div class="row">
+      <div class="t">Let the Concierge read the canon repo
+        <small>Has to be done by hand in the cloud settings — there is no API for it. Its environment is <b>env_01BjzY9e8uFhWz3ZEUAcAe2c</b>. Grant read/write on <b>junyanboon/desk-correspondence</b>.</small></div>
+      <span class="tag min">2 min</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Say yes or no to six help cards
+        <small>WiFi down · two PBF wordings · returning renter · first-timer late · who can change a booking. Robots are not allowed to write these.</small></div>
+      <span class="tag ask">Your call</span>
+    </div>
+
+    <div class="row">
+      <div class="t">David Garzon — $6.78
+        <small>His ticket says he paid <b>and</b> that he did not. Someone has to look.</small></div>
+      <span class="tag money">Money</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Jai Smith — $11.30
+        <small>Bill was sent days ago. Did it get paid?</small></div>
+      <span class="tag money">Money</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Five tickets are stuck
+        <small>They wait on jobs that already finished. No board can see them.</small></div>
+      <span class="tag ask">Your call</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Ploy ran out of AI credits
+        <small>Also needs you to pick its studio-first direction.</small></div>
+      <span class="tag ask">Your call</span>
+    </div>
+  </section>
+
+  <!-- ============ REPEAT PROBLEMS ============ -->
+  <section class="agent">
+    <div class="head"><span class="no">LOOP</span><h2>Keeps happening</h2><span class="note">robot behaviour to fix</span></div>
+
+    <div class="row">
+      <div class="t">People get locked out of studios
+        <small>A helper row cancels the door-code job. The code never gets made. Vicky Jul 24. Annie Jul 25.</small></div>
+      <span class="tag" style="background:var(--hot);color:var(--paper)">Worst</span>
+    </div>
+
+    <div class="row">
+      <div class="t">The emergency system missed a real alarm
+        <small>Vicky had a live alarm. Nothing picked it up. Five more emergency bugs beside it.</small></div>
+      <span class="tag" style="background:var(--hot);color:var(--paper)">Worst</span>
+    </div>
+
+    <div class="row">
+      <div class="t">The message log saves the same thing over and over
+        <small>22 turns saved twice in one day. One saved 12 times. Every robot shares that log.</small></div>
+      <span class="tag ask">Next</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Nobody notices when the sender dies
+        <small>Two messages to renters sat for 7 to 11 hours after an error. No alert.</small></div>
+      <span class="tag ask">Next</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Payment clears but the ticket stays stuck
+        <small>Nabil paid. Nina Li paid. Both tickets still say waiting for money.</small></div>
+      <span class="tag ask">Next</span>
+    </div>
+
+    <div class="row">
+      <div class="t">Skedda books rooms for free
+        <small>Ask it to let Skedda set the price and it puts zero.</small></div>
+      <span class="tag ask">Next</span>
+    </div>
+
+    <p class="more">Plus 9 more: two robots doing the same job twice · a retired robot still waking every night · sales follow-ups dying when a file is missing · staff marked present off a calendar block instead of a real shift · and 5 smaller ones.</p>
+  </section>
+
+  <!-- ============ DONE ============ -->
+  <section class="done">
+    <div class="head"><span class="no">DONE</span><h2>Done today</h2><span class="note">cleared Jul 29</span></div>
+    <div class="donewrap">
+
+    <div class="row done">
+      <div class="t">Four robots went quiet for a day and a half
+        <small><b>Not broken — we ran out of tokens.</b> They could not check in. 6 false alarms closed.</small></div>
+      <span class="tag ok">✓ Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">The 509 thermostat was "broken" for three weeks
+        <small><b>Nothing is wrong with it.</b> The temperature moved because people change it by hand. The room got warmer because dancers make heat. The alarm was watching normal studio life. 4 false alarms closed.</small></div>
+      <span class="tag ok">✓ Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Found the exact line causing three weeks of false alarms
+        <small>Step 7 of the Weatherman. It checks if a room will not cool — but never checks whether anyone is <b>in</b> the room. Junyan pasted the fix in.</small></div>
+      <span class="tag ok">✓ Fixed</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">The junk number <code>COOL 20.050049</code>
+        <small><b>That one was our bug.</b> We rounded the room temperature but forgot to round the target. Fixed, tested, pushed — <b>sdm-logger 137d8a6</b>.</small></div>
+      <span class="tag ok">✓ Fixed</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Blank message drafts — 20 a day, three robots
+        <small><b>No robot ever did this wrong.</b> Junyan deleted the Drafted Body field on purpose, because robots kept filling it and leaving the real message empty — so nothing sent. But the rule telling them to fill it was still live in <b>seven places</b>, including three real send paths.</small></div>
+      <span class="tag ok">✓ Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Pulled that dead rule out of everywhere
+        <small>9 edits across 5 canon files (<b>2bde506</b>), plus two Notion skill pages it was hiding in. One of them still marked it <b>MANDATORY</b> on the money path. Written down as a plain "never do this" so nobody adds it back. 6 rows closed.</small></div>
+      <span class="tag ok">✓ Fixed</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Caught a fix that was itself the bug
+        <small>On Jul 25 someone "fixed" the Timekeeper by making that dead rule <b>mandatory</b>. Reverted, with a note so nobody repeats it.</small></div>
+      <span class="tag ok">✓ Fixed</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">The Custodian can now check the alarm and Skedda itself
+        <small>Turned both on. It used to trust what Notion said. Now it can look at the real panel — which matters, because a ticket marked <b>done</b> is what locked Vicky out.</small></div>
+      <span class="tag ok">✓ Done</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Told it the new tools exist
+        <small>Its instructions still listed the old tools and said the alarm one <b>"does not exist here."</b> It would have ignored the whole thing. Also told it: never book, edit or cancel in Skedda — read only.</small></div>
+      <span class="tag ok">✓ Done</span>
+    </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Compiled Jul 29, 2026 · Junyan + Claude</span>
+    <span>Archive:
+      <a class="src" href="2026-07-23.html">Jul 23</a> ·
+      <a class="src" href="2026-07-21.html">Jul 21</a> ·
+      <a class="src" href="2026-07-18.html">Jul 18</a>
+    </span>
+  </footer>
+
+</div>
+</body>
+</html>

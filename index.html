@@ -136,7 +136,7 @@
   <header class="mast">
     <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Aug 4, 2026</span></div>
     <h1>The Fixer<em> Report</em></h1>
-    <p class="verdict">Two alarms tonight. One was a real bug — <b>the sales follow-ups have been dying on a field you deleted a week ago</b>, and that is fixed and pushed. The other had already fixed itself in the twenty minutes before the report was written. Underneath both sits the thing neither alarm named: <b>the Concierge is not finishing its passes</b>, and eleven separate complaints in the feedback pile are that one fact wearing different clothes. <b>Eight things left for you</b> — six of them since Jul 29.</p>
+    <p class="verdict">Two alarms tonight. One was a real bug — <b>the sales follow-ups have been dying on a field you deleted a week ago</b>, and that is fixed and pushed. The other had already fixed itself in the twenty minutes before the report was written. Underneath both sits the thing neither alarm named: <b>the Concierge is not finishing its passes</b>, and eleven separate complaints in the feedback pile are that one fact wearing different clothes. <b>Seven things left for you</b> — and one of the eight turned out to be a card you had already cleared on Jul 28; the repo access was never the problem, the prompts were.</p>
   </header>
 
   <nav class="score" aria-label="At a glance">
@@ -183,11 +183,11 @@
   <section class="you">
     <div class="head"><span class="no">YOU</span><h2>Still waiting</h2><span class="note">carried from Jul 29 — no report ran for six days</span></div>
 
-    <div class="row carry">
-      <div class="t">Let the Concierge read the canon repo
-        <small>Has to be done by hand in the cloud settings — there is no API for it. Environment <b>env_01BjzY9e8uFhWz3ZEUAcAe2c</b>, grant read/write on <b>junyanboon/desk-correspondence</b>.</small>
-        <span class="why">→ Carried — two minutes, and only you can click it.</span></div>
-      <span class="tag carry">Carried · day 6</span>
+    <div class="row done">
+      <div class="t">Let the Concierge read the canon repo — you already did this, six days ago
+        <small>This card was wrong. The access grant was done on <b>Jul 28</b>, when you ran <code>/web-setup</code>; it was verified live at the time — the repo attaches, lists as private with write access, and clones. Nothing was ever waiting on a click. What was actually broken is that <b>no prompt ever asked for the repo</b>: each one said "if the repo is checked out, pull it", it never was, and all three agents fell straight through to the Notion mirror — canon up to 30 minutes stale, silently, for six days.</small>
+        <span class="res">✓ Cleared — all three git-first prompts now attach the repo themselves before reading: <b>Concierge v5.4</b>, <b>Responder :20 v1.1</b>, <b>Responder :50 v1.1</b>. Cron and enablement untouched. Each must now open its report with a <code>canon: git</code> or <code>canon: notion-projection</code> line, so a silent fallback can never hide again. First proof lands on the 01:50Z run. <b>RUNTIMES.md</b> records the versions.</span></div>
+      <span class="tag ok">✓ Cleared</span>
     </div>
 
     <div class="row carry">

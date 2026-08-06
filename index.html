@@ -134,134 +134,161 @@
 <div class="sheet">
 
   <header class="mast">
-    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report · Aug 4, 2026</span></div>
+    <div class="kicker"><span>Dance Annex Studios</span><i></i><span>Fixer Report &middot; Aug 6, 2026</span></div>
     <h1>The Fixer<em> Report</em></h1>
-    <p class="verdict">Two alarms tonight. One was a real bug — <b>the sales follow-ups have been dying on a field you deleted a week ago</b>, and that is fixed and pushed. The other had already fixed itself in the twenty minutes before the report was written. Underneath both sits the thing neither alarm named: <b>the Concierge is not finishing its passes</b>, and eleven separate complaints in the feedback pile are that one fact wearing different clothes. <b>Five things left for you</b> — three of the original eight were already done and the page had not caught up: the repo access you granted on Jul 28, and both money cards, settled the same week. One of those money cards was not even about the person it named.</p>
+    <p class="verdict">Tonight the desk stopped storing policy and started reading it. Five SOPs, the canon, and a new wording card now all point at one page instead of repeating it &mdash; <b>your design, not mine</b>, and it is better than what I proposed because nothing is stored, so nothing can go stale. Then a probe proved the cloud runners could not actually reach that page: <b>the fix was your own environment's allowlist, not the website</b>. Re-run passed. Underneath it all, the pattern that will not go away: <b>three renters this week were rescued by you, not by the fleet</b> &mdash; a request neither robot claims, no error raised, aging in silence. That one now has a handoff file with your name on it.</p>
   </header>
 
   <nav class="score" aria-label="At a glance">
-    <div><span class="n hot-n">8</span><span class="k">Left for you</span></div>
-    <div><span class="n" style="color:var(--done)">2</span><span class="k">Cleared today</span></div>
-    <div><span class="n" style="color:var(--brand)">78</span><span class="k">Feedback rows waiting</span></div>
-    <div><span class="n act-n">6</span><span class="k">Days since last report</span></div>
+    <div><span class="n hot-n">1</span><span class="k">Hot before 17:45</span></div>
+    <div><span class="n" style="color:var(--done)">6</span><span class="k">Cleared today</span></div>
+    <div><span class="n act-n">9</span><span class="k">Carried</span></div>
+    <div><span class="n" style="color:var(--brand)">93</span><span class="k">Feedback rows waiting</span></div>
   </nav>
 
   <!-- ============ TONIGHT ============ -->
   <section class="you">
-    <div class="head"><span class="no">YOU</span><h2>Tonight</h2><span class="note">what the sweep raised</span></div>
+    <div class="head"><span class="no">YOU</span><h2>Tonight</h2><span class="note">what this session did and what it left you</span></div>
 
-    <div class="row done">
-      <div class="t">Sales follow-ups stopped three days ago — fixed
-        <small>The nightly <b>sales-decay</b> job wrote the message into <b>Drafted Body</b>. You deleted that field on Jul 29 on purpose, so every run since Aug 2 died on a Notion error and six waiting leads got nothing. Pointed it at <b>Message Body</b> instead — the field that actually sends. Two other places still told robots to use the dead field (the QA review prompt, the Custodian's audit checklist); cleared both, so they stop reporting it as a defect.</small>
-        <span class="res">✓ Cleared — commit 1b7bcc0, pushed to main. Dry run green: 6 leads read, 1 nudge would queue (held at Pending Review, as always). The real write happens on tomorrow's 13:05 UTC run.</span></div>
-      <span class="tag ok">✓ Cleared</span>
+    <div class="row carry">
+      <div class="t">watchlist-refresh &mdash; the emergency SMS lane only knows 2 of 8 renters
+        <small>This is the one with a clock. The same failing workflow carries the <b>J28 ledger pollers</b>, which is why David Diep's SMS turns were not in the git ledger tonight. Emergencies arrive by SMS only &mdash; by your own design &mdash; so a watchlist that knows a quarter of the building is the whole lane degraded, not a reporting nuisance. Cause is known and named on the Aug 4 page: <code>scripts/sms_pull.py</code> commits without checking whether an earlier step left the tree mid-rebase.</small>
+        <span class="why">&rarr; Carried &middot; needs a deliberate 20 minutes, not a midnight guess &mdash; a blind patch risks discarding freshly-pulled messages. Action row asks for it before 17:45 today.</span></div>
+      <span class="tag carry">Carried &middot; day 3</span>
     </div>
 
     <div class="row done">
-      <div class="t">The 12-thread inbox backlog — already drained
-        <small>The silence check tripped on 12 threads sitting unarchived, oldest 34 hours (Dana Hufe). By the time I read the mailbox, <b>11 of them were labelled and archived</b> — including both Dana Hufe threads, and she had already had a voicemail from you. One thread is left in the inbox: Wavestage Theatre asking about tap space, which you answered at 23:12. It is answered, just not filed.</small>
-        <span class="res">✓ Already covered — nothing to drain. I did not archive the Wavestage thread myself; it is a live sales enquiry and hiding it from the Concierge would cost more than it saves.</span></div>
-      <span class="tag ok">✓ Cleared</span>
+      <div class="t">Policy now has ONE source of truth &mdash; and it is read, not remembered
+        <small>You spotted the shape first: <i>"drift and confusion because we have responding information in two locations."</i> The inventory found <b>~30 live restatements of about 5 policy facts</b> &mdash; 7 of 67 wording rows, the SOP table and its templates, 9 spots across 5 canon files. Then you ruled: <b>the terms page is the boss unless they have an agreement, and then that is the boss.</b> And you proposed a better mechanism than mine &mdash; look it up at answer time instead of storing a copy. My version stored the answer and then watched for it going bad; yours never stores it, so it cannot go bad.</small>
+        <span class="res">&#10003; Cleared &mdash; canon commits <b>d21ec465</b>, <b>0787183b</b>, <b>4c4bdee3</b>. Five SOPs updated: Booking Changes, Billing/Refunds/Credits, Time Extension, Agreement Amendment, and the deprecated Refund/Credit page you asked to include. The asymmetry is now written down: where the agent can verify, it must; where it cannot &mdash; a signed agreement PDF is unreadable to it &mdash; it must never quote a figure, only point at the document.</span></div>
+      <span class="tag ok">&#10003; Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">The cloud runners could not actually read that page &mdash; and it was not the website
+        <small>Everything above rested on an assumption I had only ever verified from my own session. The probe came back <b>HTTP 403</b>, contradicting canon I had written an hour earlier. I corrected canon rather than leave a false claim standing. The diagnosis: the cloud environment's own egress allowlist, which defaults to <b>Trusted</b> &mdash; package registries and GitHub, nothing else. You set it to <b>Custom</b> with the two domains, keeping the default package-manager list on (dropping that checkbox would have cut off GitHub and broken every agent's git-first canon read).</small>
+        <span class="res">&#10003; Cleared &mdash; re-run <b>passed first attempt</b>: clause 3.4 returned word for word. Three facts recorded so nobody re-derives them: a <b>403 with no body is the sandbox proxy, not the site</b>; <b>working connectors prove nothing about web access</b> (the failed probe wrote its Notion row perfectly while unable to fetch a public page); and <b>every new environment starts at Trusted</b> and will fail this fetch. RUNTIMES.md updated.</span></div>
+      <span class="tag ok">&#10003; Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Link rot &mdash; five pointers aimed at a page deprecated five weeks ago
+        <small>Found while doing the above, not looked for. Two live SOPs carried five links to the retired Refund/Credit SOP &mdash; including an escalation path that read <i>"a refund is actually required &rarr; [dead page]"</i>. This is the more dangerous form of drift: the copies were fine, the <b>pointers</b> outlived their targets.</small>
+        <span class="res">&#10003; Cleared &mdash; all five re-pointed; the deprecated page now says that arriving there means the link that sent you is stale, and to file a feedback row rather than follow it.</span></div>
+      <span class="tag ok">&#10003; Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">David Diep &mdash; buffer moved, and the person he asked for is drafted
+        <small>He agreed to the 15-minute shift <b>three minutes</b> after being asked &mdash; his fourth consecutive yes on a 509B tight transition. You made the Skedda move; I read it back rather than trusting the board: booking <code>118627159</code>, 509B, <b>20:15&ndash;22:15</b>, buffer restored. He also asked that the confirmation go to <b>Tess</b> &mdash; you said Tara; his SMS and his whole file say Tess English, his authorized user since June. Skedda emails only the booking holder, so she gets nothing automatically. That is the gap.</small>
+        <span class="res">&#10003; Cleared &mdash; staff Action row Processed on the machine read; T2 email to Tess drafted and held at Pending Review. Nothing queued to David: Skedda's own confirmation is all he needs, per your call. <b>Release before 20:15 today.</b></span></div>
+      <span class="tag ok">&#10003; Cleared</span>
+    </div>
+
+    <div class="row done">
+      <div class="t">Himanshi Mehta &mdash; served, but by you
+        <small>Verified both halves rather than taking the board's word: the confirmation SMS reads Sent at 01:53, and Skedda now holds booking <code>118625498</code>, Studio 693, Aug 15 3:30&ndash;5:00 PM. Nothing is owed her but the invoice.</small>
+        <span class="res">&#10003; Cleared &mdash; feedback row closed. But the row was a <b>defect</b> against pass orchestration, not a to-do about replying, and that defect is not fixed. Closing it on the strength of a human rescue is exactly how a defect class goes quiet, so the resolution note says so in plain words.</span></div>
+      <span class="tag ok">&#10003; Cleared</span>
     </div>
 
     <div class="row carry">
-      <div class="t">The Concierge is not finishing its passes — this is the real one
-        <small>Eleven feedback rows this week are the same fact: a booking-extension request sat 1h20m with the booking 1h40m out; the pass ledger built to make skipping visible was itself skipped on 3 of 5 passes the day it shipped; the 3-deferral escalation rule went unpaid the morning after it shipped; a claimed-but-never-dispatched message to David Diep &amp; Tess English stayed invisible for 13 days because the job that would catch it keeps getting deferred. <b>Adding another rule has now failed three times.</b> The inbox backlog tonight was the same cause. This needs your call on what the Concierge stops doing, not another instruction.</small>
-        <span class="why">→ Carried — a design decision, and it is yours. Nothing I can safely change alone.</span></div>
-      <span class="tag carry">Carried · day 1</span>
+      <div class="t">Ping-pong &mdash; three renters this week, all rescued by a human
+        <small>Shauna Hardy, Himanshi Mehta, David Diep. Same shape every time: a message arrives, <b>neither robot claims it</b>, no error is raised, nobody flags a skip &mdash; it simply ages. Two of the three needed you to catch them, and one had a booking the next day. Your diagnosis tonight is the one to build on: <b>picking up new correspondence-log messages is part of the Concierge's sweep</b>, and that part is not happening.</small>
+        <span class="why">&rarr; Carried &middot; handoff file written tonight for your Concierge repair map &mdash; <code>HANDOFF-concierge-ping-pong.md</code>. A design decision, and it is yours.</span></div>
+      <span class="tag carry">Carried &middot; day 1</span>
     </div>
 
     <div class="row carry">
-      <div class="t">watchlist-refresh goes red about one run in four
-        <small>Found while checking the sweep's claim that it was green — it failed at 00:04Z tonight and passed at 00:00 and 00:30. Cause is exact: <b>scripts/sms_pull.py</b> commits without first checking whether an earlier step in the same job left the tree mid-rebase with an unmerged <code>watchlist/</code> file. When it has, the commit fatals and takes the whole run down. No data is lost — the cursor rides in that same commit, so the next run re-reads everything.</small>
-        <span class="why">→ Carried — I can see the bug but cannot reproduce the race, and a blind patch here risks discarding freshly-pulled messages. Wants a deliberate 20 minutes, not a guess at midnight.</span></div>
-      <span class="tag carry">Carried · day 1</span>
+      <div class="t">Say yes or no to the help cards &mdash; four down, thirteen to go
+        <small>Walked one at a time, as you asked. Card 4 taught the most: the premise was wrong. The policy was <b>not</b> missing &mdash; it was in the Booking Changes SOP all along. The robot had searched git canon and the wording DB but <b>not the SOP wiki</b>, so it concluded no policy existed and invented an answer for a live renter when a verbatim template was sitting right there. Filed as a wording problem; it was a <b>missing lookup</b>.</small>
+        <span class="why">&rarr; Carried &middot; thirteen left, every one a wording call only a human makes.</span></div>
+      <span class="tag carry">Carried &middot; day 8</span>
     </div>
   </section>
 
   <!-- ============ STILL WAITING ============ -->
   <section class="you">
-    <div class="head"><span class="no">YOU</span><h2>Still waiting</h2><span class="note">carried from Jul 29 — no report ran for six days</span></div>
+    <div class="head"><span class="no">YOU</span><h2>Still waiting</h2><span class="note">money, access and config only you can move</span></div>
 
-    <div class="row done">
-      <div class="t">Let the Concierge read the canon repo — you already did this, six days ago
-        <small>This card was wrong. The access grant was done on <b>Jul 28</b>, when you ran <code>/web-setup</code>; it was verified live at the time — the repo attaches, lists as private with write access, and clones. Nothing was ever waiting on a click. What was actually broken is that <b>no prompt ever asked for the repo</b>: each one said "if the repo is checked out, pull it", it never was, and all three agents fell straight through to the Notion mirror — canon up to 30 minutes stale, silently, for six days.</small>
-        <span class="res">✓ Cleared — all three git-first prompts now attach the repo themselves before reading: <b>Concierge v5.4</b>, <b>Responder :20 v1.1</b>, <b>Responder :50 v1.1</b>. Cron and enablement untouched. Each must now open its report with a <code>canon: git</code> or <code>canon: notion-projection</code> line, so a silent fallback can never hide again. First proof lands on the 01:50Z run. <b>RUNTIMES.md</b> records the versions.</span></div>
-      <span class="tag ok">✓ Cleared</span>
+    <div class="row carry">
+      <div class="t">Money on the board &mdash; four rows, two with dates
+        <small><b>KCC / Rachel Hwang $1,325.20</b> by direct deposit, due <b>Fri Aug 8</b>. <b>Himanshi Mehta $166.11</b> invoice for Aug 15 + Aug 30 &mdash; her SMS says pay within 24 hours to confirm, so the invoice is now the blocker on two live bookings. <b>Abbey Richens $259.90</b>, verify by Aug 15. <b>Nina Li</b> asks whether her $288.18 credit can extend past its Nov 30 expiry &mdash; unanswered since Aug 3, and it is a decision, not a charge.</small>
+        <span class="why">&rarr; Carried &middot; I never charge, settle or refund. All four held.</span></div>
+      <span class="tag carry">Carried</span>
     </div>
 
     <div class="row carry">
-      <div class="t">Say yes or no to the help cards — now seventeen of them
-        <small>It was six on Jul 29, and eleven when this page was compiled. The live count is <b>seventeen</b>: WiFi down · three PBF wordings, including "studios today" on a PBF sent a day late · two returning-renter variants · first-timer late · who can change a booking · a renter who already left a review · someone else's propped building door · a renter who answers their own question · a departing renter's thank-you · the phone number we asked for · a renter confirming they are fine after a welfare check · facilitator or authorized-user changes to a booking · the outbound signature that says 527 Bloor on 509 and 901 threads. Robots are not allowed to write these.</small>
-        <span class="why">→ Carried — every one of these is a wording call only a human makes.</span></div>
-      <span class="tag carry">Carried · day 6</span>
-    </div>
-
-    <div class="row done">
-      <div class="t">David Garzon — $6.78 — settled a week ago
-        <small>The ticket contradicted itself: one step read the booking as Unpaid, the Resolution block read it as Paid. It was held rather than closed on a guess.</small>
-        <span class="res">✓ Already covered — the Custodian's Jul 28 night pass cleared it on the condition the row itself named: David's correspondence showed two outbound turns and no reply since the Jul 26 notice, so no dispute. Charge row Processed and reconciled against a dated live Skedda read, queue row Sent with matching ledger evidence, ticket at Done. One residual, not blocking: the Skedda half of the check still cannot be read from the cloud.</span></div>
-      <span class="tag ok">✓ Cleared</span>
-    </div>
-
-    <div class="row done">
-      <div class="t">Jai Smith — $11.30 — nothing left owing
-        <small>You said this was closed, and the board agrees: every Jai Smith money row is Processed, except the two failed $33.90 card attempts, which are Cancelled. The $11.30 figure was never a bill of hers — it was the standard-rate alternative considered on <b>David Garzon's</b> 15-minute overtime block before it was corrected to $6.78 at his membership rate. The card mixed up two people.</small>
-        <span class="res">✓ Already covered — no open charge, no unsent invoice.</span></div>
-      <span class="tag ok">✓ Cleared</span>
+      <div class="t">Julie Marouze signed &mdash; and nothing moved
+        <small>Signature landed <b>Aug 5 08:47</b>. None of the six post-signature steps has started, and the ticket still sits at Gate: Artist <b>waiting for the signature it already has</b>. Same family as the ping-pong above: the trigger arrived, nothing picked it up.</small>
+        <span class="why">&rarr; Carried &middot; not touched tonight; the run went to the policy architecture and the probe.</span></div>
+      <span class="tag carry">Carried &middot; day 1</span>
     </div>
 
     <div class="row carry">
-      <div class="t">Five tickets are stuck
-        <small>They wait on jobs that already finished. No board can see them.</small>
-        <span class="why">→ Carried — I did not re-verify these five against the live boards tonight; the run went to the two new errors. First thing tomorrow's compile opens with.</span></div>
-      <span class="tag carry">Carried · day 6</span>
+      <div class="t">Kelly-Ann Johnson cannot be verified at the door
+        <small>The panel has her as <b>"KellyAnn Johnson"</b>, no hyphen. The desk's own access check on her stored name returns <b>NO ACCESS</b> &mdash; a name mismatch, not a permissions problem, but it fails identically at 8pm on a Saturday.</small>
+        <span class="why">&rarr; Carried &middot; one field edit, yours to make.</span></div>
+      <span class="tag carry">Carried</span>
     </div>
 
     <div class="row carry">
-      <div class="t">Ploy ran out of AI credits
-        <small>Also needs you to pick its studio-first direction. Feedback row still open since Jul 26.</small>
-        <span class="why">→ Carried — needs a purchase and a direction, both yours.</span></div>
-      <span class="tag carry">Carried · day 6</span>
+      <div class="t">The Concierge trigger, and the environment that is still on Trusted
+        <small>The Concierge fired <b>5 of ~15 passes</b> on Aug 3 and the desk was dark 09:0x&ndash;18:10 &mdash; only you can restart a cloud trigger. Separately, tonight's allowlist fix covered the environment shared by the Concierge and both Responders; <b>the Weatherman's environment was not changed</b>. It watches a thermostat and answers no policy questions, so it needs nothing today &mdash; but the next agent added there will inherit the failure silently.</small>
+        <span class="why">&rarr; Carried &middot; noted deliberately rather than fixed, so it is not a surprise later.</span></div>
+      <span class="tag carry">Carried</span>
+    </div>
+
+    <div class="row carry">
+      <div class="t">The repair job that did not run
+        <small><b>Detection ran ~15&times; yesterday; repair ran zero times.</b> JOB 7 is the only fix path for desk invariants and it did not fire at all on Aug 5 &mdash; the open Action board grew 78 &rarr; 90 while the checker kept filing. About 14 of those rows are the checker <b>filing defects about its own defect rows</b>. The board is amplifying itself.</small>
+        <span class="why">&rarr; Carried &middot; the loudest thing on the board is now partly the board talking to itself.</span></div>
+      <span class="tag carry">Carried &middot; day 1</span>
+    </div>
+
+    <div class="row carry">
+      <div class="t">Older, still open
+        <small>Timekeeper's run prompt still orders a check the SOP retired &middot; the FBS <b>"Staff at start = Yes"</b> derived from unclaimed coverage &middot; a standing platform-booking &rarr; Skedda mirror check (Anneka K.'s booking lived on Peerspace five days with no Skedda block) &middot; outbound email replies starting new threads instead of replying in-thread &middot; Ploy's AI credits and its studio-first direction, open since Jul 26.</small>
+        <span class="why">&rarr; Carried &middot; each needs a decision or a purchase, not a fix.</span></div>
+      <span class="tag carry">Carried</span>
     </div>
   </section>
 
   <!-- ============ THE PILE ============ -->
   <section class="agent">
-    <div class="head"><span class="no">LOOP</span><h2>The pile</h2><span class="note">78 open feedback rows, sorted into what they actually are</span></div>
+    <div class="head"><span class="no">LOOP</span><h2>The pile</h2><span class="note">93 open feedback rows &mdash; 15 more than Tuesday</span></div>
 
     <ul class="classes">
-      <li><span class="cnt">11</span><span class="t">The Concierge does not finish its passes
-        <small>Ping-pong flips, the skipped pass ledger, the unpaid escalation rule, the 13-day-invisible failed send, the Dana Hufe ticket that will not fit inside a pass. All one cause. See the YOU item above.</small></span></li>
-      <li><span class="cnt">11</span><span class="t">Missing wording cards
-        <small>Every one is a real conversation the desk had to freehand. Waiting on your yes/no.</small></span></li>
+      <li><span class="cnt">14</span><span class="t">The Concierge does not finish its passes
+        <small>Grew by three this week, all ping-pong. The class now has a named mechanism rather than a symptom: new correspondence-log messages are not being picked up as part of the sweep. See the handoff file.</small></span></li>
+      <li><span class="cnt">13</span><span class="t">Missing wording cards
+        <small>Four cleared, thirteen left. Card 4 showed at least some of these are misfiled &mdash; a missing lookup wearing a wording problem's clothes.</small></span></li>
       <li><span class="cnt">10</span><span class="t">Robots missing their check-ins
-        <small>Weatherman, Concierge, Responder, Watchman, Sentinel, Custodian — the Run Monitor keeps filing the same alert. Several turned out to be reports that ran but were not linked back to the roster, which means the monitor is measuring the wrong thing.</small></span></li>
+        <small>Unchanged. Several are reports that ran but were never linked back to the roster, which means the monitor is measuring the wrong thing.</small></span></li>
       <li><span class="cnt">7</span><span class="t">The thermostat story
-        <small>509's setpoint jumped to odd non-round values on two consecutive days with no robot behind it; the Weatherman dropped an eight-hour block of hourly passes; thermal-log rows written with wrong timestamps. Nobody has ruled on whether this is a person, the Nest app, or the device.</small></span></li>
+        <small>Unchanged and unruled: a person, the Nest app, or the device.</small></span></li>
       <li><span class="cnt">6</span><span class="t">Specs written against fields that do not exist
-        <small>JOB 8 and JOB 10 read a CC Status property deleted on Jul 29 — invariant F has been silently passing ever since. JOB 10's invariant G has no Send After exclusion, so a correctly-scheduled message looks identical to a stuck one; it has filed false staff work five runs running. Tonight's Drafted Body fix was one of this family.</small></span></li>
+        <small>Invariant F silently passing since Jul 29; invariant G still has no Send After exclusion, so a correctly-scheduled message is indistinguishable from a stuck one.</small></span></li>
       <li><span class="cnt">6</span><span class="t">The emergency lane, from Jul 25
-        <small>A missed live alarm distress, a recursive on-call echo, duplicates across two paths, false positives. Untouched for ten days.</small></span></li>
+        <small>Untouched for twelve days. Tonight's watchlist failure sits on top of it.</small></span></li>
       <li><span class="cnt">5</span><span class="t">The Correspondence Log writes duplicates
-        <small>18 duplicate groups in 24 hours, third window running. It is the poller, not robot behaviour — and it corrupts the one dedup store every robot shares.</small></span></li>
-      <li><span class="cnt">3</span><span class="t">Jobs that are just failing
-        <small>sdm-logger still red after its fix was marked Applied; the day-sheet renderer cron timed out; watchlist-refresh, above.</small></span></li>
-      <li><span class="cnt">1</span><span class="t">The Treasurer's monthly pass reported $6,647.78 as needing a decision
-        <small>After review, essentially none of it was real: paused accounts read as missing subscriptions, booking charges counted as membership, draft invoices counted as arrears. Six named defects in one row, four of them still to fix in the workflow.</small></span></li>
-      <li><span class="cnt">18</span><span class="t">Everything else
-        <small>Held drafts that release themselves, access codes sent through a platform relay, an overtime scan that re-bills a comped booking, the retired Closer still running nightly, and the rest.</small></span></li>
+        <small>Now directly relevant: this is the same store the Concierge is failing to sweep. A corrupted dedup store and a skipped read are the two halves of one problem.</small></span></li>
+      <li><span class="cnt">4</span><span class="t">Jobs that are just failing
+        <small>watchlist-refresh (hot, above), sdm-logger still red after its fix was marked Applied, the day-sheet renderer cron, and the Custodian's 02:35 night pass which did not run &mdash; so there is no Fixer Report for Aug 5.</small></span></li>
+      <li><span class="cnt">28</span><span class="t">Everything else
+        <small>Held drafts that release themselves, access codes through a platform relay, the retired Closer still running nightly, the Treasurer's $6,647.78 that was almost entirely not real, and the rest.</small></span></li>
     </ul>
 
-    <p class="more">Nothing in this pile is on fire. It is the cost of six days without a compile — and the top two classes are 22 of the 78, which is where a single afternoon would pay for itself.</p>
+    <p class="more">The pile grew 78 &rarr; 93 in two days, and roughly 14 of the new rows are the invariant checker filing defects about its own defect rows. <b>The board is now partly measuring itself.</b> The two real classes &mdash; unfinished passes and missing wording &mdash; are 27 of the 93, and the first of those finally has a mechanism to attack instead of another rule to add.</p>
   </section>
 
   <footer>
-    <span>Compiled 2026-08-04 · every item ✓ Cleared or → Carried</span>
+    <span>Compiled 2026-08-06 &middot; every item &#10003; Cleared or &rarr; Carried</span>
     <span>Archive:
-      <a class="src" href="2026-07-29.html">Jul 29</a> ·
-      <a class="src" href="2026-07-23.html">Jul 23</a> ·
-      <a class="src" href="2026-07-21.html">Jul 21</a> ·
+      <a class="src" href="2026-08-04.html">Aug 4</a> &middot;
+      <a class="src" href="2026-07-29.html">Jul 29</a> &middot;
+      <a class="src" href="2026-07-23.html">Jul 23</a> &middot;
+      <a class="src" href="2026-07-21.html">Jul 21</a> &middot;
       <a class="src" href="2026-07-18.html">Jul 18</a>
     </span>
   </footer>
